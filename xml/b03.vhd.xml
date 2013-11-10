@@ -1,0 +1,634 @@
+<?xml version="1.0" ?>
+<vhdl file="../VHDL/b03.vhd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.liberouter.org/formal_verification/tools/vhd2xml/vhdl.xsd">
+  <entity id="b03" line="1">
+    <ports>
+      <port id="clock" io="in" line="4">
+        <type id="bit" line="4"/>
+      </port>
+      <port id="reset" io="in" line="5">
+        <type id="bit" line="5"/>
+      </port>
+      <port id="request1" io="in" line="6">
+        <type id="bit" line="6"/>
+      </port>
+      <port id="request2" io="in" line="7">
+        <type id="bit" line="7"/>
+      </port>
+      <port id="request3" io="in" line="8">
+        <type id="bit" line="8"/>
+      </port>
+      <port id="request4" io="in" line="9">
+        <type id="bit" line="9"/>
+      </port>
+      <port id="grant_o" io="out" line="10">
+        <type id="bit_vector" line="10">
+          <range direction="downto">
+            <constantExpression id="3" line="10"/>
+            <constantExpression id="0" line="10"/>
+          </range>
+        </type>
+      </port>
+    </ports>
+  </entity>
+  <architecture entity="b03" id="behav" line="15">
+    <declarations>
+      <constantDeclaration line="17">
+        <ids>
+          <id id="init" line="17"/>
+        </ids>
+        <type id="integer" line="17"/>
+        <value>
+          <constantExpression id="0" line="17"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="18">
+        <ids>
+          <id id="analisi_req" line="18"/>
+        </ids>
+        <type id="integer" line="18"/>
+        <value>
+          <constantExpression id="1" line="18"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="19">
+        <ids>
+          <id id="assign" line="19"/>
+        </ids>
+        <type id="integer" line="19"/>
+        <value>
+          <constantExpression id="2" line="19"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="21">
+        <ids>
+          <id id="u1" line="21"/>
+        </ids>
+        <type id="bit_vector" line="21">
+          <range direction="downto">
+            <constantExpression id="2" line="21"/>
+            <constantExpression id="0" line="21"/>
+          </range>
+        </type>
+        <value>
+          <constantExpression id="&quot;100&quot;" line="21"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="22">
+        <ids>
+          <id id="u2" line="22"/>
+        </ids>
+        <type id="bit_vector" line="22">
+          <range direction="downto">
+            <constantExpression id="2" line="22"/>
+            <constantExpression id="0" line="22"/>
+          </range>
+        </type>
+        <value>
+          <constantExpression id="&quot;010&quot;" line="22"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="23">
+        <ids>
+          <id id="u3" line="23"/>
+        </ids>
+        <type id="bit_vector" line="23">
+          <range direction="downto">
+            <constantExpression id="2" line="23"/>
+            <constantExpression id="0" line="23"/>
+          </range>
+        </type>
+        <value>
+          <constantExpression id="&quot;001&quot;" line="23"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="24">
+        <ids>
+          <id id="u4" line="24"/>
+        </ids>
+        <type id="bit_vector" line="24">
+          <range direction="downto">
+            <constantExpression id="2" line="24"/>
+            <constantExpression id="0" line="24"/>
+          </range>
+        </type>
+        <value>
+          <constantExpression id="&quot;111&quot;" line="24"/>
+        </value>
+      </constantDeclaration>
+    </declarations>
+    <parallelStatements>
+      <processParallelStatement line="28" postponed="false">
+        <parameters>
+          <objectExpression id="clock" line="28"/>
+          <objectExpression id="reset" line="28"/>
+        </parameters>
+        <declarations>
+          <variableDeclaration line="30" shared="false">
+            <ids>
+              <id id="coda0" line="30"/>
+            </ids>
+            <type id="bit_vector" line="30">
+              <range direction="downto">
+                <constantExpression id="2" line="30"/>
+                <constantExpression id="0" line="30"/>
+              </range>
+            </type>
+          </variableDeclaration>
+          <variableDeclaration line="31" shared="false">
+            <ids>
+              <id id="coda1" line="31"/>
+            </ids>
+            <type id="bit_vector" line="31">
+              <range direction="downto">
+                <constantExpression id="2" line="31"/>
+                <constantExpression id="0" line="31"/>
+              </range>
+            </type>
+          </variableDeclaration>
+          <variableDeclaration line="32" shared="false">
+            <ids>
+              <id id="coda2" line="32"/>
+            </ids>
+            <type id="bit_vector" line="32">
+              <range direction="downto">
+                <constantExpression id="2" line="32"/>
+                <constantExpression id="0" line="32"/>
+              </range>
+            </type>
+          </variableDeclaration>
+          <variableDeclaration line="33" shared="false">
+            <ids>
+              <id id="coda3" line="33"/>
+            </ids>
+            <type id="bit_vector" line="33">
+              <range direction="downto">
+                <constantExpression id="2" line="33"/>
+                <constantExpression id="0" line="33"/>
+              </range>
+            </type>
+          </variableDeclaration>
+          <variableDeclaration line="34" shared="false">
+            <ids>
+              <id id="stato" line="34"/>
+            </ids>
+            <type id="integer" line="34">
+              <range direction="downto">
+                <constantExpression id="2" line="34"/>
+                <constantExpression id="0" line="34"/>
+              </range>
+            </type>
+          </variableDeclaration>
+          <variableDeclaration line="35" shared="false">
+            <ids>
+              <id id="ru1" line="35"/>
+              <id id="ru2" line="35"/>
+              <id id="ru3" line="35"/>
+              <id id="ru4" line="35"/>
+            </ids>
+            <type id="bit" line="35"/>
+          </variableDeclaration>
+          <variableDeclaration line="36" shared="false">
+            <ids>
+              <id id="fu1" line="36"/>
+              <id id="fu2" line="36"/>
+              <id id="fu3" line="36"/>
+              <id id="fu4" line="36"/>
+            </ids>
+            <type id="bit" line="36"/>
+          </variableDeclaration>
+          <variableDeclaration line="37" shared="false">
+            <ids>
+              <id id="grant" line="37"/>
+            </ids>
+            <type id="bit_vector" line="37">
+              <range direction="downto">
+                <constantExpression id="3" line="37"/>
+                <constantExpression id="0" line="37"/>
+              </range>
+            </type>
+          </variableDeclaration>
+        </declarations>
+        <sequentialStatements>
+          <ifSequentialStatement line="40">
+            <relationalExpression op="=">
+              <objectExpression id="reset" line="40"/>
+              <constantExpression id="'1'" line="40"/>
+            </relationalExpression>
+            <then>
+              <sequentialStatements>
+                <variableAssignSequentialStatement line="41">
+                  <objectExpression id="stato" line="41"/>
+                  <objectExpression id="init" line="41"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="42">
+                  <objectExpression id="coda0" line="42"/>
+                  <constantExpression id="&quot;000&quot;" line="42"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="43">
+                  <objectExpression id="coda1" line="43"/>
+                  <constantExpression id="&quot;000&quot;" line="43"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="44">
+                  <objectExpression id="coda2" line="44"/>
+                  <constantExpression id="&quot;000&quot;" line="44"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="45">
+                  <objectExpression id="coda3" line="45"/>
+                  <constantExpression id="&quot;000&quot;" line="45"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="46">
+                  <objectExpression id="ru1" line="46"/>
+                  <constantExpression id="'0'" line="46"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="47">
+                  <objectExpression id="fu1" line="47"/>
+                  <constantExpression id="'0'" line="47"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="48">
+                  <objectExpression id="ru2" line="48"/>
+                  <constantExpression id="'0'" line="48"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="49">
+                  <objectExpression id="fu2" line="49"/>
+                  <constantExpression id="'0'" line="49"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="50">
+                  <objectExpression id="ru3" line="50"/>
+                  <constantExpression id="'0'" line="50"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="51">
+                  <objectExpression id="fu3" line="51"/>
+                  <constantExpression id="'0'" line="51"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="52">
+                  <objectExpression id="ru4" line="52"/>
+                  <constantExpression id="'0'" line="52"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="53">
+                  <objectExpression id="fu4" line="53"/>
+                  <constantExpression id="'0'" line="53"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="54">
+                  <objectExpression id="grant" line="54"/>
+                  <constantExpression id="&quot;0000&quot;" line="54"/>
+                </variableAssignSequentialStatement>
+                <signalAssignSequentialStatement line="55">
+                  <objectExpression id="grant_o" line="55"/>
+                  <signalValue>
+                    <expressions>
+                      <constantExpression id="&quot;0000&quot;" line="55"/>
+                    </expressions>
+                  </signalValue>
+                </signalAssignSequentialStatement>
+              </sequentialStatements>
+            </then>
+            <elseif>
+              <logicalExpression op="and">
+                <objectExpression id="clock" line="56">
+                  <attribute id="event" line="56"/>
+                </objectExpression>
+                <relationalExpression op="=">
+                  <objectExpression id="clock" line="56"/>
+                  <constantExpression id="'1'" line="56"/>
+                </relationalExpression>
+              </logicalExpression>
+              <then>
+                <sequentialStatements>
+                  <caseSequentialStatement line="58">
+                    <objectExpression id="stato" line="58"/>
+                    <case>
+                      <choices>
+                        <objectExpression id="init" line="59"/>
+                      </choices>
+                      <sequentialStatements>
+                        <variableAssignSequentialStatement line="60">
+                          <objectExpression id="ru1" line="60"/>
+                          <objectExpression id="request1" line="60"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="61">
+                          <objectExpression id="ru2" line="61"/>
+                          <objectExpression id="request2" line="61"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="62">
+                          <objectExpression id="ru3" line="62"/>
+                          <objectExpression id="request3" line="62"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="63">
+                          <objectExpression id="ru4" line="63"/>
+                          <objectExpression id="request4" line="63"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="64">
+                          <objectExpression id="stato" line="64"/>
+                          <objectExpression id="analisi_req" line="64"/>
+                        </variableAssignSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="analisi_req" line="65"/>
+                      </choices>
+                      <sequentialStatements>
+                        <signalAssignSequentialStatement line="66">
+                          <objectExpression id="grant_o" line="66"/>
+                          <signalValue>
+                            <expressions>
+                              <objectExpression id="grant" line="66"/>
+                            </expressions>
+                          </signalValue>
+                        </signalAssignSequentialStatement>
+                        <ifSequentialStatement line="68">
+                          <relationalExpression op="=">
+                            <objectExpression id="ru1" line="68"/>
+                            <constantExpression id="'1'" line="68"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <ifSequentialStatement line="69">
+                                <relationalExpression op="=">
+                                  <objectExpression id="fu1" line="69"/>
+                                  <constantExpression id="'0'" line="69"/>
+                                </relationalExpression>
+                                <then>
+                                  <sequentialStatements>
+                                    <variableAssignSequentialStatement line="70">
+                                      <objectExpression id="coda3" line="70"/>
+                                      <objectExpression id="coda2" line="70"/>
+                                    </variableAssignSequentialStatement>
+                                    <variableAssignSequentialStatement line="71">
+                                      <objectExpression id="coda2" line="71"/>
+                                      <objectExpression id="coda1" line="71"/>
+                                    </variableAssignSequentialStatement>
+                                    <variableAssignSequentialStatement line="72">
+                                      <objectExpression id="coda1" line="72"/>
+                                      <objectExpression id="coda0" line="72"/>
+                                    </variableAssignSequentialStatement>
+                                    <variableAssignSequentialStatement line="73">
+                                      <objectExpression id="coda0" line="73"/>
+                                      <objectExpression id="u1" line="73"/>
+                                    </variableAssignSequentialStatement>
+                                  </sequentialStatements>
+                                </then>
+                              </ifSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                          <elseif>
+                            <relationalExpression op="=">
+                              <objectExpression id="ru2" line="75"/>
+                              <constantExpression id="'1'" line="75"/>
+                            </relationalExpression>
+                            <then>
+                              <sequentialStatements>
+                                <ifSequentialStatement line="76">
+                                  <relationalExpression op="=">
+                                    <objectExpression id="fu2" line="76"/>
+                                    <constantExpression id="'0'" line="76"/>
+                                  </relationalExpression>
+                                  <then>
+                                    <sequentialStatements>
+                                      <variableAssignSequentialStatement line="77">
+                                        <objectExpression id="coda3" line="77"/>
+                                        <objectExpression id="coda2" line="77"/>
+                                      </variableAssignSequentialStatement>
+                                      <variableAssignSequentialStatement line="78">
+                                        <objectExpression id="coda2" line="78"/>
+                                        <objectExpression id="coda1" line="78"/>
+                                      </variableAssignSequentialStatement>
+                                      <variableAssignSequentialStatement line="79">
+                                        <objectExpression id="coda1" line="79"/>
+                                        <objectExpression id="coda0" line="79"/>
+                                      </variableAssignSequentialStatement>
+                                      <variableAssignSequentialStatement line="80">
+                                        <objectExpression id="coda0" line="80"/>
+                                        <objectExpression id="u2" line="80"/>
+                                      </variableAssignSequentialStatement>
+                                    </sequentialStatements>
+                                  </then>
+                                </ifSequentialStatement>
+                              </sequentialStatements>
+                            </then>
+                          </elseif>
+                          <elseif>
+                            <relationalExpression op="=">
+                              <objectExpression id="ru3" line="82"/>
+                              <constantExpression id="'1'" line="82"/>
+                            </relationalExpression>
+                            <then>
+                              <sequentialStatements>
+                                <ifSequentialStatement line="83">
+                                  <relationalExpression op="=">
+                                    <objectExpression id="fu3" line="83"/>
+                                    <constantExpression id="'0'" line="83"/>
+                                  </relationalExpression>
+                                  <then>
+                                    <sequentialStatements>
+                                      <variableAssignSequentialStatement line="84">
+                                        <objectExpression id="coda3" line="84"/>
+                                        <objectExpression id="coda2" line="84"/>
+                                      </variableAssignSequentialStatement>
+                                      <variableAssignSequentialStatement line="85">
+                                        <objectExpression id="coda2" line="85"/>
+                                        <objectExpression id="coda1" line="85"/>
+                                      </variableAssignSequentialStatement>
+                                      <variableAssignSequentialStatement line="86">
+                                        <objectExpression id="coda1" line="86"/>
+                                        <objectExpression id="coda0" line="86"/>
+                                      </variableAssignSequentialStatement>
+                                      <variableAssignSequentialStatement line="87">
+                                        <objectExpression id="coda0" line="87"/>
+                                        <objectExpression id="u3" line="87"/>
+                                      </variableAssignSequentialStatement>
+                                    </sequentialStatements>
+                                  </then>
+                                </ifSequentialStatement>
+                              </sequentialStatements>
+                            </then>
+                          </elseif>
+                          <elseif>
+                            <relationalExpression op="=">
+                              <objectExpression id="ru4" line="89"/>
+                              <constantExpression id="'1'" line="89"/>
+                            </relationalExpression>
+                            <then>
+                              <sequentialStatements>
+                                <ifSequentialStatement line="90">
+                                  <relationalExpression op="=">
+                                    <objectExpression id="fu4" line="90"/>
+                                    <constantExpression id="'0'" line="90"/>
+                                  </relationalExpression>
+                                  <then>
+                                    <sequentialStatements>
+                                      <variableAssignSequentialStatement line="91">
+                                        <objectExpression id="coda3" line="91"/>
+                                        <objectExpression id="coda2" line="91"/>
+                                      </variableAssignSequentialStatement>
+                                      <variableAssignSequentialStatement line="92">
+                                        <objectExpression id="coda2" line="92"/>
+                                        <objectExpression id="coda1" line="92"/>
+                                      </variableAssignSequentialStatement>
+                                      <variableAssignSequentialStatement line="93">
+                                        <objectExpression id="coda1" line="93"/>
+                                        <objectExpression id="coda0" line="93"/>
+                                      </variableAssignSequentialStatement>
+                                      <variableAssignSequentialStatement line="94">
+                                        <objectExpression id="coda0" line="94"/>
+                                        <objectExpression id="u4" line="94"/>
+                                      </variableAssignSequentialStatement>
+                                    </sequentialStatements>
+                                  </then>
+                                </ifSequentialStatement>
+                              </sequentialStatements>
+                            </then>
+                          </elseif>
+                        </ifSequentialStatement>
+                        <variableAssignSequentialStatement line="98">
+                          <objectExpression id="fu1" line="98"/>
+                          <objectExpression id="ru1" line="98"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="99">
+                          <objectExpression id="fu2" line="99"/>
+                          <objectExpression id="ru2" line="99"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="100">
+                          <objectExpression id="fu3" line="100"/>
+                          <objectExpression id="ru3" line="100"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="101">
+                          <objectExpression id="fu4" line="101"/>
+                          <objectExpression id="ru4" line="101"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="103">
+                          <objectExpression id="stato" line="103"/>
+                          <objectExpression id="assign" line="103"/>
+                        </variableAssignSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="assign" line="105"/>
+                      </choices>
+                      <sequentialStatements>
+                        <ifSequentialStatement line="106">
+                          <relationalExpression op="=">
+                            <logicalExpression op="or">
+                              <logicalExpression op="or">
+                                <logicalExpression op="or">
+                                  <objectExpression id="fu1" line="106"/>
+                                  <objectExpression id="fu2" line="106"/>
+                                </logicalExpression>
+                                <objectExpression id="fu3" line="106"/>
+                              </logicalExpression>
+                              <objectExpression id="fu4" line="106"/>
+                            </logicalExpression>
+                            <constantExpression id="'1'" line="106"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <caseSequentialStatement line="107">
+                                <objectExpression id="coda0" line="107"/>
+                                <case>
+                                  <choices>
+                                    <objectExpression id="u1" line="108"/>
+                                  </choices>
+                                  <sequentialStatements>
+                                    <variableAssignSequentialStatement line="109">
+                                      <objectExpression id="grant" line="109"/>
+                                      <constantExpression id="&quot;1000&quot;" line="109"/>
+                                    </variableAssignSequentialStatement>
+                                  </sequentialStatements>
+                                </case>
+                                <case>
+                                  <choices>
+                                    <objectExpression id="u2" line="110"/>
+                                  </choices>
+                                  <sequentialStatements>
+                                    <variableAssignSequentialStatement line="111">
+                                      <objectExpression id="grant" line="111"/>
+                                      <constantExpression id="&quot;0100&quot;" line="111"/>
+                                    </variableAssignSequentialStatement>
+                                  </sequentialStatements>
+                                </case>
+                                <case>
+                                  <choices>
+                                    <objectExpression id="u3" line="112"/>
+                                  </choices>
+                                  <sequentialStatements>
+                                    <variableAssignSequentialStatement line="113">
+                                      <objectExpression id="grant" line="113"/>
+                                      <constantExpression id="&quot;0010&quot;" line="113"/>
+                                    </variableAssignSequentialStatement>
+                                  </sequentialStatements>
+                                </case>
+                                <case>
+                                  <choices>
+                                    <objectExpression id="u4" line="114"/>
+                                  </choices>
+                                  <sequentialStatements>
+                                    <variableAssignSequentialStatement line="115">
+                                      <objectExpression id="grant" line="115"/>
+                                      <constantExpression id="&quot;0001&quot;" line="115"/>
+                                    </variableAssignSequentialStatement>
+                                  </sequentialStatements>
+                                </case>
+                                <case>
+                                  <choices>
+                                    <others/>
+                                  </choices>
+                                  <sequentialStatements>
+                                    <variableAssignSequentialStatement line="117">
+                                      <objectExpression id="grant" line="117"/>
+                                      <constantExpression id="&quot;0000&quot;" line="117"/>
+                                    </variableAssignSequentialStatement>
+                                  </sequentialStatements>
+                                </case>
+                              </caseSequentialStatement>
+                              <variableAssignSequentialStatement line="119">
+                                <objectExpression id="coda0" line="119"/>
+                                <objectExpression id="coda1" line="119"/>
+                              </variableAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="120">
+                                <objectExpression id="coda1" line="120"/>
+                                <objectExpression id="coda2" line="120"/>
+                              </variableAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="121">
+                                <objectExpression id="coda2" line="121"/>
+                                <objectExpression id="coda3" line="121"/>
+                              </variableAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="122">
+                                <objectExpression id="coda3" line="122"/>
+                                <constantExpression id="&quot;000&quot;" line="122"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                        </ifSequentialStatement>
+                        <variableAssignSequentialStatement line="124">
+                          <objectExpression id="ru1" line="124"/>
+                          <objectExpression id="request1" line="124"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="125">
+                          <objectExpression id="ru2" line="125"/>
+                          <objectExpression id="request2" line="125"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="126">
+                          <objectExpression id="ru3" line="126"/>
+                          <objectExpression id="request3" line="126"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="127">
+                          <objectExpression id="ru4" line="127"/>
+                          <objectExpression id="request4" line="127"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="128">
+                          <objectExpression id="stato" line="128"/>
+                          <objectExpression id="analisi_req" line="128"/>
+                        </variableAssignSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                  </caseSequentialStatement>
+                </sequentialStatements>
+              </then>
+            </elseif>
+          </ifSequentialStatement>
+        </sequentialStatements>
+      </processParallelStatement>
+    </parallelStatements>
+  </architecture>
+</vhdl>

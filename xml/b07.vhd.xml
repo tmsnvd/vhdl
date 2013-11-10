@@ -1,0 +1,542 @@
+<?xml version="1.0" ?>
+<vhdl file="../VHDL/b07.vhd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.liberouter.org/formal_verification/tools/vhd2xml/vhdl.xsd">
+  <entity id="b07" line="1">
+    <ports>
+      <port id="punti_retta" io="out" line="3">
+        <type id="integer" line="3">
+          <range direction="downto">
+            <constantExpression id="255" line="3"/>
+            <constantExpression id="0" line="3"/>
+          </range>
+        </type>
+      </port>
+      <port id="start" io="in" line="4">
+        <type id="bit" line="4"/>
+      </port>
+      <port id="reset" io="in" line="5">
+        <type id="bit" line="5"/>
+      </port>
+      <port id="clock" io="in" line="6">
+        <type id="bit" line="6"/>
+      </port>
+    </ports>
+  </entity>
+  <architecture entity="b07" id="behav" line="10">
+    <declarations>
+      <constantDeclaration line="12">
+        <ids>
+          <id id="lung_mem" line="12"/>
+        </ids>
+        <type id="integer" line="12"/>
+        <value>
+          <constantExpression id="15" line="12"/>
+        </value>
+      </constantDeclaration>
+      <subtypeDeclaration id="num8bit" line="13">
+        <id id="integer" line="13"/>
+        <ranges>
+          <range direction="downto">
+            <constantExpression id="255" line="13"/>
+            <constantExpression id="0" line="13"/>
+          </range>
+        </ranges>
+      </subtypeDeclaration>
+      <typeDeclaration id="rom" line="14">
+        <array>
+          <rangesTypes>
+            <range direction="to">
+              <constantExpression id="0" line="14"/>
+              <objectExpression id="lung_mem" line="14"/>
+            </range>
+          </rangesTypes>
+          <objectExpression id="num8bit" line="14"/>
+        </array>
+      </typeDeclaration>
+      <constantDeclaration line="16">
+        <ids>
+          <id id="s_reset" line="16"/>
+        </ids>
+        <type id="integer" line="16"/>
+        <value>
+          <constantExpression id="0" line="16"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="17">
+        <ids>
+          <id id="s_start" line="17"/>
+        </ids>
+        <type id="integer" line="17"/>
+        <value>
+          <constantExpression id="1" line="17"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="18">
+        <ids>
+          <id id="s_load_x" line="18"/>
+        </ids>
+        <type id="integer" line="18"/>
+        <value>
+          <constantExpression id="2" line="18"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="19">
+        <ids>
+          <id id="s_update_mar" line="19"/>
+        </ids>
+        <type id="integer" line="19"/>
+        <value>
+          <constantExpression id="3" line="19"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="20">
+        <ids>
+          <id id="s_load_y" line="20"/>
+        </ids>
+        <type id="integer" line="20"/>
+        <value>
+          <constantExpression id="4" line="20"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="21">
+        <ids>
+          <id id="s_calc_retta" line="21"/>
+        </ids>
+        <type id="integer" line="21"/>
+        <value>
+          <constantExpression id="5" line="21"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="22">
+        <ids>
+          <id id="s_incrementa" line="22"/>
+        </ids>
+        <type id="integer" line="22"/>
+        <value>
+          <constantExpression id="6" line="22"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="24">
+        <ids>
+          <id id="mem" line="24"/>
+        </ids>
+        <type id="rom" line="24"/>
+        <value>
+          <aggregateExpression>
+            <constantExpression id="1" line="24"/>
+            <constantExpression id="255" line="24"/>
+            <constantExpression id="0" line="24"/>
+            <constantExpression id="0" line="24"/>
+            <constantExpression id="0" line="25"/>
+            <constantExpression id="2" line="25"/>
+            <constantExpression id="0" line="25"/>
+            <constantExpression id="0" line="25"/>
+            <constantExpression id="0" line="26"/>
+            <constantExpression id="2" line="26"/>
+            <constantExpression id="255" line="26"/>
+            <constantExpression id="5" line="26"/>
+            <constantExpression id="0" line="27"/>
+            <constantExpression id="2" line="27"/>
+            <constantExpression id="0" line="27"/>
+            <constantExpression id="2" line="27"/>
+          </aggregateExpression>
+        </value>
+      </constantDeclaration>
+    </declarations>
+    <parallelStatements>
+      <processParallelStatement line="29" postponed="false">
+        <parameters>
+          <objectExpression id="reset" line="29"/>
+          <objectExpression id="clock" line="29"/>
+        </parameters>
+        <declarations>
+          <variableDeclaration line="30" shared="false">
+            <ids>
+              <id id="stato" line="30"/>
+            </ids>
+            <type id="integer" line="30">
+              <range direction="downto">
+                <constantExpression id="6" line="30"/>
+                <constantExpression id="0" line="30"/>
+              </range>
+            </type>
+          </variableDeclaration>
+          <variableDeclaration line="31" shared="false">
+            <ids>
+              <id id="cont" line="31"/>
+              <id id="mar" line="31"/>
+              <id id="x" line="31"/>
+              <id id="y" line="31"/>
+              <id id="t" line="31"/>
+            </ids>
+            <type id="num8bit" line="31"/>
+          </variableDeclaration>
+        </declarations>
+        <sequentialStatements>
+          <ifSequentialStatement line="33">
+            <relationalExpression op="=">
+              <objectExpression id="reset" line="33"/>
+              <constantExpression id="'1'" line="33"/>
+            </relationalExpression>
+            <then>
+              <sequentialStatements>
+                <variableAssignSequentialStatement line="34">
+                  <objectExpression id="stato" line="34"/>
+                  <objectExpression id="s_reset" line="34"/>
+                </variableAssignSequentialStatement>
+                <signalAssignSequentialStatement line="35">
+                  <objectExpression id="punti_retta" line="35"/>
+                  <signalValue>
+                    <expressions>
+                      <constantExpression id="0" line="35"/>
+                    </expressions>
+                  </signalValue>
+                </signalAssignSequentialStatement>
+                <variableAssignSequentialStatement line="36">
+                  <objectExpression id="cont" line="36"/>
+                  <constantExpression id="0" line="36"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="37">
+                  <objectExpression id="mar" line="37"/>
+                  <constantExpression id="0" line="37"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="38">
+                  <objectExpression id="x" line="38"/>
+                  <constantExpression id="0" line="38"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="39">
+                  <objectExpression id="y" line="39"/>
+                  <constantExpression id="0" line="39"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="40">
+                  <objectExpression id="t" line="40"/>
+                  <constantExpression id="0" line="40"/>
+                </variableAssignSequentialStatement>
+              </sequentialStatements>
+            </then>
+            <elseif>
+              <logicalExpression op="and">
+                <objectExpression id="clock" line="41">
+                  <attribute id="event" line="41"/>
+                </objectExpression>
+                <relationalExpression op="=">
+                  <objectExpression id="clock" line="41"/>
+                  <constantExpression id="'1'" line="41"/>
+                </relationalExpression>
+              </logicalExpression>
+              <then>
+                <sequentialStatements>
+                  <caseSequentialStatement line="42">
+                    <objectExpression id="stato" line="42"/>
+                    <case>
+                      <choices>
+                        <objectExpression id="s_reset" line="43"/>
+                      </choices>
+                      <sequentialStatements>
+                        <variableAssignSequentialStatement line="44">
+                          <objectExpression id="stato" line="44"/>
+                          <objectExpression id="s_start" line="44"/>
+                        </variableAssignSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="s_start" line="45"/>
+                      </choices>
+                      <sequentialStatements>
+                        <ifSequentialStatement line="46">
+                          <relationalExpression op="=">
+                            <objectExpression id="start" line="46"/>
+                            <constantExpression id="'1'" line="46"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <variableAssignSequentialStatement line="47">
+                                <objectExpression id="cont" line="47"/>
+                                <constantExpression id="0" line="47"/>
+                              </variableAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="48">
+                                <objectExpression id="mar" line="48"/>
+                                <constantExpression id="0" line="48"/>
+                              </variableAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="49">
+                                <objectExpression id="stato" line="49"/>
+                                <objectExpression id="s_load_x" line="49"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                          <else>
+                            <sequentialStatements>
+                              <variableAssignSequentialStatement line="51">
+                                <objectExpression id="stato" line="51"/>
+                                <objectExpression id="s_start" line="51"/>
+                              </variableAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="52">
+                                <objectExpression id="punti_retta" line="52"/>
+                                <signalValue>
+                                  <expressions>
+                                    <constantExpression id="0" line="52"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                            </sequentialStatements>
+                          </else>
+                        </ifSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="s_load_x" line="54"/>
+                      </choices>
+                      <sequentialStatements>
+                        <variableAssignSequentialStatement line="55">
+                          <objectExpression id="x" line="55"/>
+                          <objectExpression id="mem" line="55">
+                            <parameters>
+                              <objectExpression id="mar" line="55"/>
+                            </parameters>
+                          </objectExpression>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="56">
+                          <objectExpression id="stato" line="56"/>
+                          <objectExpression id="s_update_mar" line="56"/>
+                        </variableAssignSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="s_update_mar" line="57"/>
+                      </choices>
+                      <sequentialStatements>
+                        <variableAssignSequentialStatement line="58">
+                          <objectExpression id="mar" line="58"/>
+                          <multiplyingExpression op="mod">
+                            <addingExpression op="+">
+                              <objectExpression id="mar" line="58"/>
+                              <constantExpression id="1" line="58"/>
+                            </addingExpression>
+                            <constantExpression id="16" line="58"/>
+                          </multiplyingExpression>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="59">
+                          <objectExpression id="t" line="59"/>
+                          <addingExpression op="+">
+                            <multiplyingExpression op="mod">
+                              <objectExpression id="x" line="59"/>
+                              <constantExpression id="128" line="59"/>
+                            </multiplyingExpression>
+                            <multiplyingExpression op="mod">
+                              <objectExpression id="x" line="59"/>
+                              <constantExpression id="128" line="59"/>
+                            </multiplyingExpression>
+                          </addingExpression>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="60">
+                          <objectExpression id="stato" line="60"/>
+                          <objectExpression id="s_load_y" line="60"/>
+                        </variableAssignSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="s_load_y" line="61"/>
+                      </choices>
+                      <sequentialStatements>
+                        <variableAssignSequentialStatement line="62">
+                          <objectExpression id="y" line="62"/>
+                          <objectExpression id="mem" line="62">
+                            <parameters>
+                              <objectExpression id="mar" line="62"/>
+                            </parameters>
+                          </objectExpression>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="63">
+                          <objectExpression id="x" line="63"/>
+                          <addingExpression op="+">
+                            <multiplyingExpression op="mod">
+                              <objectExpression id="x" line="63"/>
+                              <constantExpression id="128" line="63"/>
+                            </multiplyingExpression>
+                            <multiplyingExpression op="mod">
+                              <objectExpression id="t" line="63"/>
+                              <constantExpression id="128" line="63"/>
+                            </multiplyingExpression>
+                          </addingExpression>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="64">
+                          <objectExpression id="stato" line="64"/>
+                          <objectExpression id="s_calc_retta" line="64"/>
+                        </variableAssignSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="s_calc_retta" line="65"/>
+                      </choices>
+                      <sequentialStatements>
+                        <variableAssignSequentialStatement line="66">
+                          <objectExpression id="x" line="66"/>
+                          <addingExpression op="+">
+                            <multiplyingExpression op="mod">
+                              <objectExpression id="x" line="66"/>
+                              <constantExpression id="128" line="66"/>
+                            </multiplyingExpression>
+                            <multiplyingExpression op="mod">
+                              <objectExpression id="y" line="66"/>
+                              <constantExpression id="128" line="66"/>
+                            </multiplyingExpression>
+                          </addingExpression>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="67">
+                          <objectExpression id="stato" line="67"/>
+                          <objectExpression id="s_incrementa" line="67"/>
+                        </variableAssignSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="s_incrementa" line="68"/>
+                      </choices>
+                      <sequentialStatements>
+                        <ifSequentialStatement line="69">
+                          <relationalExpression op="/=">
+                            <objectExpression id="mar" line="69"/>
+                            <objectExpression id="lung_mem" line="69"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <ifSequentialStatement line="70">
+                                <relationalExpression op="=">
+                                  <objectExpression id="x" line="70"/>
+                                  <constantExpression id="2" line="70"/>
+                                </relationalExpression>
+                                <then>
+                                  <sequentialStatements>
+                                    <variableAssignSequentialStatement line="71">
+                                      <objectExpression id="cont" line="71"/>
+                                      <multiplyingExpression op="mod">
+                                        <addingExpression op="+">
+                                          <objectExpression id="cont" line="71"/>
+                                          <constantExpression id="1" line="71"/>
+                                        </addingExpression>
+                                        <constantExpression id="256" line="71"/>
+                                      </multiplyingExpression>
+                                    </variableAssignSequentialStatement>
+                                    <variableAssignSequentialStatement line="72">
+                                      <objectExpression id="mar" line="72"/>
+                                      <multiplyingExpression op="mod">
+                                        <addingExpression op="+">
+                                          <objectExpression id="mar" line="72"/>
+                                          <constantExpression id="1" line="72"/>
+                                        </addingExpression>
+                                        <constantExpression id="16" line="72"/>
+                                      </multiplyingExpression>
+                                    </variableAssignSequentialStatement>
+                                    <variableAssignSequentialStatement line="73">
+                                      <objectExpression id="stato" line="73"/>
+                                      <objectExpression id="s_load_x" line="73"/>
+                                    </variableAssignSequentialStatement>
+                                  </sequentialStatements>
+                                </then>
+                                <else>
+                                  <sequentialStatements>
+                                    <variableAssignSequentialStatement line="75">
+                                      <objectExpression id="mar" line="75"/>
+                                      <multiplyingExpression op="mod">
+                                        <addingExpression op="+">
+                                          <objectExpression id="mar" line="75"/>
+                                          <constantExpression id="1" line="75"/>
+                                        </addingExpression>
+                                        <constantExpression id="16" line="75"/>
+                                      </multiplyingExpression>
+                                    </variableAssignSequentialStatement>
+                                    <variableAssignSequentialStatement line="76">
+                                      <objectExpression id="stato" line="76"/>
+                                      <objectExpression id="s_load_x" line="76"/>
+                                    </variableAssignSequentialStatement>
+                                  </sequentialStatements>
+                                </else>
+                              </ifSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                          <else>
+                            <sequentialStatements>
+                              <ifSequentialStatement line="79">
+                                <relationalExpression op="=">
+                                  <objectExpression id="start" line="79"/>
+                                  <constantExpression id="'0'" line="79"/>
+                                </relationalExpression>
+                                <then>
+                                  <sequentialStatements>
+                                    <ifSequentialStatement line="80">
+                                      <relationalExpression op="=">
+                                        <objectExpression id="x" line="80"/>
+                                        <constantExpression id="2" line="80"/>
+                                      </relationalExpression>
+                                      <then>
+                                        <sequentialStatements>
+                                          <signalAssignSequentialStatement line="81">
+                                            <objectExpression id="punti_retta" line="81"/>
+                                            <signalValue>
+                                              <expressions>
+                                                <addingExpression op="+">
+                                                  <multiplyingExpression op="mod">
+                                                    <objectExpression id="cont" line="81"/>
+                                                    <exponentialExpression op="**">
+                                                      <constantExpression id="2" line="81"/>
+                                                      <constantExpression id="8" line="81"/>
+                                                    </exponentialExpression>
+                                                  </multiplyingExpression>
+                                                  <constantExpression id="1" line="81"/>
+                                                </addingExpression>
+                                              </expressions>
+                                            </signalValue>
+                                          </signalAssignSequentialStatement>
+                                          <variableAssignSequentialStatement line="82">
+                                            <objectExpression id="stato" line="82"/>
+                                            <objectExpression id="s_start" line="82"/>
+                                          </variableAssignSequentialStatement>
+                                        </sequentialStatements>
+                                      </then>
+                                      <else>
+                                        <sequentialStatements>
+                                          <signalAssignSequentialStatement line="84">
+                                            <objectExpression id="punti_retta" line="84"/>
+                                            <signalValue>
+                                              <expressions>
+                                                <objectExpression id="cont" line="84"/>
+                                              </expressions>
+                                            </signalValue>
+                                          </signalAssignSequentialStatement>
+                                          <variableAssignSequentialStatement line="85">
+                                            <objectExpression id="stato" line="85"/>
+                                            <objectExpression id="s_start" line="85"/>
+                                          </variableAssignSequentialStatement>
+                                        </sequentialStatements>
+                                      </else>
+                                    </ifSequentialStatement>
+                                  </sequentialStatements>
+                                </then>
+                                <else>
+                                  <sequentialStatements>
+                                    <variableAssignSequentialStatement line="88">
+                                      <objectExpression id="stato" line="88"/>
+                                      <objectExpression id="s_incrementa" line="88"/>
+                                    </variableAssignSequentialStatement>
+                                  </sequentialStatements>
+                                </else>
+                              </ifSequentialStatement>
+                            </sequentialStatements>
+                          </else>
+                        </ifSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                  </caseSequentialStatement>
+                </sequentialStatements>
+              </then>
+            </elseif>
+          </ifSequentialStatement>
+        </sequentialStatements>
+      </processParallelStatement>
+    </parallelStatements>
+  </architecture>
+</vhdl>

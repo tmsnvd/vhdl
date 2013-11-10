@@ -1,0 +1,19 @@
+# gtkwave custom configuration file
+#
+# eliminate some keys
+#
+accel "/File/Read Sim Logfile" (null)
+accel "/File/Open New Window" (null)
+accel "/Edit/Toggle Trace Hier" (null)
+accel "/Edit/Toggle Group Open|Close" (null)
+accel "/Edit/Create Group" (null)
+accel "/Markers/Locking/Lock to Lesser Named Marker" (null)
+accel "/Markers/Locking/Lock to Greater Named Marker" (null)
+accel "/Markers/Locking/Unlock from Named Marker" (null)
+accel "/Markers/Copy Primary->B Marker" (null)
+accel "/File/Read Save File" (null)
+accel "/Edit/Cut" (null)
+accel "/File/Close" (null)
+accel "/Edit/Paste" (null)
+accel "/Edit/Copy" (null)
+accel "/File/Open New Tab" (null)

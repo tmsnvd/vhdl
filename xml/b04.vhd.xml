@@ -1,0 +1,509 @@
+<?xml version="1.0" ?>
+<vhdl file="../VHDL/b04.vhd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.liberouter.org/formal_verification/tools/vhd2xml/vhdl.xsd">
+  <useClause library="ieee" line="1">
+    <use id="ieee.std_logic_1164.all" line="2"/>
+    <use id="ieee.std_logic_arith.all" line="3"/>
+  </useClause>
+  <entity id="b04" line="5">
+    <ports>
+      <port id="restart" io="in" line="6">
+        <type id="bit" line="6"/>
+      </port>
+      <port id="average" io="in" line="7">
+        <type id="bit" line="7"/>
+      </port>
+      <port id="enable" io="in" line="8">
+        <type id="bit" line="8"/>
+      </port>
+      <port id="data_in" io="in" line="9">
+        <type id="integer" line="9">
+          <range direction="downto">
+            <constantExpression id="127" line="9"/>
+            <prefixExpression op="-">
+              <constantExpression id="128" line="9"/>
+            </prefixExpression>
+          </range>
+        </type>
+      </port>
+      <port id="data_out" io="out" line="10">
+        <type id="integer" line="10">
+          <range direction="downto">
+            <constantExpression id="127" line="10"/>
+            <prefixExpression op="-">
+              <constantExpression id="128" line="10"/>
+            </prefixExpression>
+          </range>
+        </type>
+      </port>
+      <port id="reset" io="in" line="11">
+        <type id="bit" line="11"/>
+      </port>
+      <port id="clock" io="in" line="12">
+        <type id="bit" line="12"/>
+      </port>
+    </ports>
+  </entity>
+  <architecture entity="b04" id="behav" line="16">
+    <declarations>
+      <constantDeclaration line="18">
+        <ids>
+          <id id="sa" line="18"/>
+        </ids>
+        <type id="integer" line="18"/>
+        <value>
+          <constantExpression id="0" line="18"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="19">
+        <ids>
+          <id id="sb" line="19"/>
+        </ids>
+        <type id="integer" line="19"/>
+        <value>
+          <constantExpression id="1" line="19"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="20">
+        <ids>
+          <id id="sc" line="20"/>
+        </ids>
+        <type id="integer" line="20"/>
+        <value>
+          <constantExpression id="2" line="20"/>
+        </value>
+      </constantDeclaration>
+    </declarations>
+    <parallelStatements>
+      <processParallelStatement line="22" postponed="false">
+        <parameters>
+          <objectExpression id="clock" line="22"/>
+          <objectExpression id="reset" line="22"/>
+        </parameters>
+        <declarations>
+          <variableDeclaration line="24" shared="false">
+            <ids>
+              <id id="stato" line="24"/>
+            </ids>
+            <type id="integer" line="24">
+              <range direction="downto">
+                <constantExpression id="2" line="24"/>
+                <constantExpression id="0" line="24"/>
+              </range>
+            </type>
+          </variableDeclaration>
+          <variableDeclaration line="25" shared="false">
+            <ids>
+              <id id="rmax" line="25"/>
+              <id id="rmin" line="25"/>
+              <id id="rlast" line="25"/>
+              <id id="reg1" line="25"/>
+              <id id="reg2" line="25"/>
+              <id id="reg3" line="25"/>
+              <id id="reg4" line="25"/>
+              <id id="regd" line="25"/>
+            </ids>
+            <type id="integer" line="25">
+              <range direction="downto">
+                <constantExpression id="127" line="25"/>
+                <prefixExpression op="-">
+                  <constantExpression id="128" line="25"/>
+                </prefixExpression>
+              </range>
+            </type>
+          </variableDeclaration>
+          <variableDeclaration line="26" shared="false">
+            <ids>
+              <id id="temp" line="26"/>
+            </ids>
+            <type id="integer" line="26"/>
+          </variableDeclaration>
+          <variableDeclaration line="27" shared="false">
+            <ids>
+              <id id="res" line="27"/>
+              <id id="ave" line="27"/>
+              <id id="ena" line="27"/>
+            </ids>
+            <type id="bit" line="27"/>
+          </variableDeclaration>
+        </declarations>
+        <sequentialStatements>
+          <ifSequentialStatement line="31">
+            <relationalExpression op="=">
+              <objectExpression id="reset" line="31"/>
+              <constantExpression id="'1'" line="31"/>
+            </relationalExpression>
+            <then>
+              <sequentialStatements>
+                <variableAssignSequentialStatement line="32">
+                  <objectExpression id="stato" line="32"/>
+                  <objectExpression id="sa" line="32"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="33">
+                  <objectExpression id="rmax" line="33"/>
+                  <constantExpression id="0" line="33"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="34">
+                  <objectExpression id="rmin" line="34"/>
+                  <constantExpression id="0" line="34"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="35">
+                  <objectExpression id="rlast" line="35"/>
+                  <constantExpression id="0" line="35"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="36">
+                  <objectExpression id="reg1" line="36"/>
+                  <constantExpression id="0" line="36"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="37">
+                  <objectExpression id="reg2" line="37"/>
+                  <constantExpression id="0" line="37"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="38">
+                  <objectExpression id="reg3" line="38"/>
+                  <constantExpression id="0" line="38"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="39">
+                  <objectExpression id="reg4" line="39"/>
+                  <constantExpression id="0" line="39"/>
+                </variableAssignSequentialStatement>
+                <signalAssignSequentialStatement line="40">
+                  <objectExpression id="data_out" line="40"/>
+                  <signalValue>
+                    <expressions>
+                      <constantExpression id="0" line="40"/>
+                    </expressions>
+                  </signalValue>
+                </signalAssignSequentialStatement>
+              </sequentialStatements>
+            </then>
+            <elseif>
+              <logicalExpression op="and">
+                <objectExpression id="clock" line="41">
+                  <attribute id="event" line="41"/>
+                </objectExpression>
+                <relationalExpression op="=">
+                  <objectExpression id="clock" line="41"/>
+                  <constantExpression id="'1'" line="41"/>
+                </relationalExpression>
+              </logicalExpression>
+              <then>
+                <sequentialStatements>
+                  <variableAssignSequentialStatement line="42">
+                    <objectExpression id="res" line="42"/>
+                    <objectExpression id="restart" line="42"/>
+                  </variableAssignSequentialStatement>
+                  <variableAssignSequentialStatement line="43">
+                    <objectExpression id="ena" line="43"/>
+                    <objectExpression id="enable" line="43"/>
+                  </variableAssignSequentialStatement>
+                  <variableAssignSequentialStatement line="44">
+                    <objectExpression id="ave" line="44"/>
+                    <objectExpression id="average" line="44"/>
+                  </variableAssignSequentialStatement>
+                  <caseSequentialStatement line="46">
+                    <objectExpression id="stato" line="46"/>
+                    <case>
+                      <choices>
+                        <objectExpression id="sa" line="47"/>
+                      </choices>
+                      <sequentialStatements>
+                        <variableAssignSequentialStatement line="48">
+                          <objectExpression id="stato" line="48"/>
+                          <objectExpression id="sb" line="48"/>
+                        </variableAssignSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="sb" line="49"/>
+                      </choices>
+                      <sequentialStatements>
+                        <variableAssignSequentialStatement line="50">
+                          <objectExpression id="rmax" line="50"/>
+                          <objectExpression id="data_in" line="50"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="51">
+                          <objectExpression id="rmin" line="51"/>
+                          <objectExpression id="data_in" line="51"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="52">
+                          <objectExpression id="reg1" line="52"/>
+                          <constantExpression id="0" line="52"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="53">
+                          <objectExpression id="reg2" line="53"/>
+                          <constantExpression id="0" line="53"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="54">
+                          <objectExpression id="reg3" line="54"/>
+                          <constantExpression id="0" line="54"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="55">
+                          <objectExpression id="reg4" line="55"/>
+                          <constantExpression id="0" line="55"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="56">
+                          <objectExpression id="rlast" line="56"/>
+                          <constantExpression id="0" line="56"/>
+                        </variableAssignSequentialStatement>
+                        <signalAssignSequentialStatement line="57">
+                          <objectExpression id="data_out" line="57"/>
+                          <signalValue>
+                            <expressions>
+                              <constantExpression id="0" line="57"/>
+                            </expressions>
+                          </signalValue>
+                        </signalAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="58">
+                          <objectExpression id="stato" line="58"/>
+                          <objectExpression id="sc" line="58"/>
+                        </variableAssignSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="sc" line="59"/>
+                      </choices>
+                      <sequentialStatements>
+                        <ifSequentialStatement line="60">
+                          <relationalExpression op="=">
+                            <objectExpression id="ena" line="60"/>
+                            <constantExpression id="'1'" line="60"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <variableAssignSequentialStatement line="61">
+                                <objectExpression id="rlast" line="61"/>
+                                <objectExpression id="data_in" line="61"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                        </ifSequentialStatement>
+                        <ifSequentialStatement line="63">
+                          <relationalExpression op="=">
+                            <objectExpression id="res" line="63"/>
+                            <constantExpression id="'1'" line="63"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <variableAssignSequentialStatement line="64">
+                                <objectExpression id="regd" line="64"/>
+                                <multiplyingExpression op="mod">
+                                  <addingExpression op="+">
+                                    <objectExpression id="rmax" line="64"/>
+                                    <objectExpression id="rmin" line="64"/>
+                                  </addingExpression>
+                                  <constantExpression id="128" line="64"/>
+                                </multiplyingExpression>
+                              </variableAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="65">
+                                <objectExpression id="temp" line="65"/>
+                                <addingExpression op="+">
+                                  <objectExpression id="rmax" line="65"/>
+                                  <objectExpression id="rmin" line="65"/>
+                                </addingExpression>
+                              </variableAssignSequentialStatement>
+                              <ifSequentialStatement line="67">
+                                <relationalExpression op="&gt;=">
+                                  <objectExpression id="temp" line="67"/>
+                                  <constantExpression id="0" line="67"/>
+                                </relationalExpression>
+                                <then>
+                                  <sequentialStatements>
+                                    <signalAssignSequentialStatement line="68">
+                                      <objectExpression id="data_out" line="68"/>
+                                      <signalValue>
+                                        <expressions>
+                                          <multiplyingExpression op="/">
+                                            <objectExpression id="regd" line="68"/>
+                                            <constantExpression id="2" line="68"/>
+                                          </multiplyingExpression>
+                                        </expressions>
+                                      </signalValue>
+                                    </signalAssignSequentialStatement>
+                                  </sequentialStatements>
+                                </then>
+                                <else>
+                                  <sequentialStatements>
+                                    <signalAssignSequentialStatement line="70">
+                                      <objectExpression id="data_out" line="70"/>
+                                      <signalValue>
+                                        <expressions>
+                                          <prefixExpression op="-">
+                                            <multiplyingExpression op="/">
+                                              <prefixExpression op="-">
+                                                <objectExpression id="regd" line="70"/>
+                                              </prefixExpression>
+                                              <constantExpression id="2" line="70"/>
+                                            </multiplyingExpression>
+                                          </prefixExpression>
+                                        </expressions>
+                                      </signalValue>
+                                    </signalAssignSequentialStatement>
+                                  </sequentialStatements>
+                                </else>
+                              </ifSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                          <elseif>
+                            <relationalExpression op="=">
+                              <objectExpression id="ena" line="72"/>
+                              <constantExpression id="'1'" line="72"/>
+                            </relationalExpression>
+                            <then>
+                              <sequentialStatements>
+                                <ifSequentialStatement line="73">
+                                  <relationalExpression op="=">
+                                    <objectExpression id="ave" line="73"/>
+                                    <constantExpression id="'1'" line="73"/>
+                                  </relationalExpression>
+                                  <then>
+                                    <sequentialStatements>
+                                      <signalAssignSequentialStatement line="74">
+                                        <objectExpression id="data_out" line="74"/>
+                                        <signalValue>
+                                          <expressions>
+                                            <objectExpression id="reg4" line="74"/>
+                                          </expressions>
+                                        </signalValue>
+                                      </signalAssignSequentialStatement>
+                                    </sequentialStatements>
+                                  </then>
+                                  <else>
+                                    <sequentialStatements>
+                                      <variableAssignSequentialStatement line="76">
+                                        <objectExpression id="regd" line="76"/>
+                                        <multiplyingExpression op="mod">
+                                          <addingExpression op="+">
+                                            <objectExpression id="data_in" line="76"/>
+                                            <objectExpression id="reg4" line="76"/>
+                                          </addingExpression>
+                                          <constantExpression id="128" line="76"/>
+                                        </multiplyingExpression>
+                                      </variableAssignSequentialStatement>
+                                      <variableAssignSequentialStatement line="77">
+                                        <objectExpression id="temp" line="77"/>
+                                        <addingExpression op="+">
+                                          <objectExpression id="data_in" line="77"/>
+                                          <objectExpression id="reg4" line="77"/>
+                                        </addingExpression>
+                                      </variableAssignSequentialStatement>
+                                      <ifSequentialStatement line="79">
+                                        <relationalExpression op="&gt;=">
+                                          <objectExpression id="temp" line="79"/>
+                                          <constantExpression id="0" line="79"/>
+                                        </relationalExpression>
+                                        <then>
+                                          <sequentialStatements>
+                                            <signalAssignSequentialStatement line="80">
+                                              <objectExpression id="data_out" line="80"/>
+                                              <signalValue>
+                                                <expressions>
+                                                  <multiplyingExpression op="/">
+                                                    <objectExpression id="regd" line="80"/>
+                                                    <constantExpression id="2" line="80"/>
+                                                  </multiplyingExpression>
+                                                </expressions>
+                                              </signalValue>
+                                            </signalAssignSequentialStatement>
+                                          </sequentialStatements>
+                                        </then>
+                                        <else>
+                                          <sequentialStatements>
+                                            <signalAssignSequentialStatement line="82">
+                                              <objectExpression id="data_out" line="82"/>
+                                              <signalValue>
+                                                <expressions>
+                                                  <prefixExpression op="-">
+                                                    <multiplyingExpression op="/">
+                                                      <prefixExpression op="-">
+                                                        <objectExpression id="regd" line="82"/>
+                                                      </prefixExpression>
+                                                      <constantExpression id="2" line="82"/>
+                                                    </multiplyingExpression>
+                                                  </prefixExpression>
+                                                </expressions>
+                                              </signalValue>
+                                            </signalAssignSequentialStatement>
+                                          </sequentialStatements>
+                                        </else>
+                                      </ifSequentialStatement>
+                                    </sequentialStatements>
+                                  </else>
+                                </ifSequentialStatement>
+                              </sequentialStatements>
+                            </then>
+                          </elseif>
+                          <else>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="86">
+                                <objectExpression id="data_out" line="86"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="rlast" line="86"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                            </sequentialStatements>
+                          </else>
+                        </ifSequentialStatement>
+                        <ifSequentialStatement line="88">
+                          <relationalExpression op="&gt;">
+                            <objectExpression id="data_in" line="88"/>
+                            <objectExpression id="rmax" line="88"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <variableAssignSequentialStatement line="89">
+                                <objectExpression id="rmax" line="89"/>
+                                <objectExpression id="data_in" line="89"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                          <elseif>
+                            <relationalExpression op="&lt;">
+                              <objectExpression id="data_in" line="90"/>
+                              <objectExpression id="rmin" line="90"/>
+                            </relationalExpression>
+                            <then>
+                              <sequentialStatements>
+                                <variableAssignSequentialStatement line="91">
+                                  <objectExpression id="rmin" line="91"/>
+                                  <objectExpression id="data_in" line="91"/>
+                                </variableAssignSequentialStatement>
+                              </sequentialStatements>
+                            </then>
+                          </elseif>
+                        </ifSequentialStatement>
+                        <variableAssignSequentialStatement line="93">
+                          <objectExpression id="reg4" line="93"/>
+                          <objectExpression id="reg3" line="93"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="94">
+                          <objectExpression id="reg3" line="94"/>
+                          <objectExpression id="reg2" line="94"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="95">
+                          <objectExpression id="reg2" line="95"/>
+                          <objectExpression id="reg1" line="95"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="96">
+                          <objectExpression id="reg1" line="96"/>
+                          <objectExpression id="data_in" line="96"/>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="97">
+                          <objectExpression id="stato" line="97"/>
+                          <objectExpression id="sc" line="97"/>
+                        </variableAssignSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                  </caseSequentialStatement>
+                </sequentialStatements>
+              </then>
+            </elseif>
+          </ifSequentialStatement>
+        </sequentialStatements>
+      </processParallelStatement>
+    </parallelStatements>
+  </architecture>
+</vhdl>

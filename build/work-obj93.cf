@@ -1,0 +1,7 @@
+v 3
+file / "/home/tomas/Desktop/test_b02/b02.vhd" "20131110110852.000" "20131110131118.361":
+  entity b02 at 1( 0) + 0 on 13;
+  architecture behav of b02 at 9( 103) + 0 on 14;
+file / "/home/tomas/Desktop/test_b02/b02_tb.vhd" "20131110111106.000" "20131110131118.312":
+  entity b02_tb at 4( 49) + 0 on 11;
+  architecture testbench of b02_tb at 12( 182) + 0 on 12;

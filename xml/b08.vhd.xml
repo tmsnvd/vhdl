@@ -1,0 +1,466 @@
+<?xml version="1.0" ?>
+<vhdl file="../VHDL/b08.vhd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.liberouter.org/formal_verification/tools/vhd2xml/vhdl.xsd">
+  <entity id="b08" line="1">
+    <ports>
+      <port id="clock" io="in" line="3">
+        <type id="bit" line="3"/>
+      </port>
+      <port id="reset" io="in" line="4">
+        <type id="bit" line="4"/>
+      </port>
+      <port id="start" io="in" line="5">
+        <type id="bit" line="5"/>
+      </port>
+      <port id="i" io="in" line="6">
+        <type id="bit_vector" line="6">
+          <range direction="downto">
+            <constantExpression id="7" line="6"/>
+            <constantExpression id="0" line="6"/>
+          </range>
+        </type>
+      </port>
+      <port id="o" io="out" line="7">
+        <type id="bit_vector" line="7">
+          <range direction="downto">
+            <constantExpression id="3" line="7"/>
+            <constantExpression id="0" line="7"/>
+          </range>
+        </type>
+      </port>
+    </ports>
+  </entity>
+  <architecture entity="b08" id="behav" line="12">
+    <declarations>
+      <typeDeclaration id="mem" line="14">
+        <array>
+          <rangesTypes>
+            <range direction="to">
+              <constantExpression id="0" line="14"/>
+              <constantExpression id="7" line="14"/>
+            </range>
+          </rangesTypes>
+          <objectExpression id="bit_vector" line="14">
+            <range direction="downto">
+              <constantExpression id="19" line="14"/>
+              <constantExpression id="0" line="14"/>
+            </range>
+          </objectExpression>
+        </array>
+      </typeDeclaration>
+      <constantDeclaration line="15">
+        <ids>
+          <id id="rom" line="15"/>
+        </ids>
+        <type id="mem" line="15"/>
+        <value>
+          <aggregateExpression>
+            <constantExpression id="&quot;01111111100101111010&quot;" line="16"/>
+            <constantExpression id="&quot;00111001110101100010&quot;" line="17"/>
+            <constantExpression id="&quot;10101000111111111111&quot;" line="18"/>
+            <constantExpression id="&quot;11111111011010111010&quot;" line="19"/>
+            <constantExpression id="&quot;11111111111101101110&quot;" line="20"/>
+            <constantExpression id="&quot;11111111101110101000&quot;" line="21"/>
+            <constantExpression id="&quot;11001010011101011011&quot;" line="22"/>
+            <constantExpression id="&quot;00101111111111110100&quot;" line="23"/>
+          </aggregateExpression>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="25">
+        <ids>
+          <id id="start_st" line="25"/>
+        </ids>
+        <type id="integer" line="25"/>
+        <value>
+          <constantExpression id="0" line="25"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="26">
+        <ids>
+          <id id="init" line="26"/>
+        </ids>
+        <type id="integer" line="26"/>
+        <value>
+          <constantExpression id="1" line="26"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="27">
+        <ids>
+          <id id="loop_st" line="27"/>
+        </ids>
+        <type id="integer" line="27"/>
+        <value>
+          <constantExpression id="2" line="27"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="28">
+        <ids>
+          <id id="the_end" line="28"/>
+        </ids>
+        <type id="integer" line="28"/>
+        <value>
+          <constantExpression id="3" line="28"/>
+        </value>
+      </constantDeclaration>
+      <signalDeclaration line="30">
+        <ids>
+          <id id="in_r" line="30"/>
+        </ids>
+        <type id="bit_vector" line="30">
+          <range direction="downto">
+            <constantExpression id="7" line="30"/>
+            <constantExpression id="0" line="30"/>
+          </range>
+        </type>
+      </signalDeclaration>
+      <signalDeclaration line="31">
+        <ids>
+          <id id="out_r" line="31"/>
+        </ids>
+        <type id="bit_vector" line="31">
+          <range direction="downto">
+            <constantExpression id="3" line="31"/>
+            <constantExpression id="0" line="31"/>
+          </range>
+        </type>
+      </signalDeclaration>
+      <signalDeclaration line="33">
+        <ids>
+          <id id="mar" line="33"/>
+        </ids>
+        <type id="integer" line="33">
+          <range direction="downto">
+            <constantExpression id="7" line="33"/>
+            <constantExpression id="0" line="33"/>
+          </range>
+        </type>
+      </signalDeclaration>
+    </declarations>
+    <parallelStatements>
+      <processParallelStatement line="36" postponed="false">
+        <parameters>
+          <objectExpression id="clock" line="36"/>
+          <objectExpression id="reset" line="36"/>
+        </parameters>
+        <declarations>
+          <variableDeclaration line="37" shared="false">
+            <ids>
+              <id id="stato" line="37"/>
+            </ids>
+            <type id="integer" line="37">
+              <range direction="downto">
+                <constantExpression id="3" line="37"/>
+                <constantExpression id="0" line="37"/>
+              </range>
+            </type>
+          </variableDeclaration>
+          <variableDeclaration line="38" shared="false">
+            <ids>
+              <id id="rom_1" line="38"/>
+            </ids>
+            <type id="bit_vector" line="38">
+              <range direction="downto">
+                <constantExpression id="7" line="38"/>
+                <constantExpression id="0" line="38"/>
+              </range>
+            </type>
+          </variableDeclaration>
+          <variableDeclaration line="39" shared="false">
+            <ids>
+              <id id="rom_2" line="39"/>
+            </ids>
+            <type id="bit_vector" line="39">
+              <range direction="downto">
+                <constantExpression id="7" line="39"/>
+                <constantExpression id="0" line="39"/>
+              </range>
+            </type>
+          </variableDeclaration>
+          <variableDeclaration line="40" shared="false">
+            <ids>
+              <id id="rom_or" line="40"/>
+            </ids>
+            <type id="bit_vector" line="40">
+              <range direction="downto">
+                <constantExpression id="3" line="40"/>
+                <constantExpression id="0" line="40"/>
+              </range>
+            </type>
+          </variableDeclaration>
+        </declarations>
+        <sequentialStatements>
+          <ifSequentialStatement line="43">
+            <relationalExpression op="=">
+              <objectExpression id="reset" line="43"/>
+              <constantExpression id="'1'" line="43"/>
+            </relationalExpression>
+            <then>
+              <sequentialStatements>
+                <variableAssignSequentialStatement line="44">
+                  <objectExpression id="stato" line="44"/>
+                  <objectExpression id="start_st" line="44"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="45">
+                  <objectExpression id="rom_1" line="45"/>
+                  <constantExpression id="&quot;00000000&quot;" line="45"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="46">
+                  <objectExpression id="rom_2" line="46"/>
+                  <constantExpression id="&quot;00000000&quot;" line="46"/>
+                </variableAssignSequentialStatement>
+                <variableAssignSequentialStatement line="47">
+                  <objectExpression id="rom_or" line="47"/>
+                  <constantExpression id="&quot;0000&quot;" line="47"/>
+                </variableAssignSequentialStatement>
+                <signalAssignSequentialStatement line="48">
+                  <objectExpression id="mar" line="48"/>
+                  <signalValue>
+                    <expressions>
+                      <constantExpression id="0" line="48"/>
+                    </expressions>
+                  </signalValue>
+                </signalAssignSequentialStatement>
+                <signalAssignSequentialStatement line="49">
+                  <objectExpression id="in_r" line="49"/>
+                  <signalValue>
+                    <expressions>
+                      <constantExpression id="&quot;00000000&quot;" line="49"/>
+                    </expressions>
+                  </signalValue>
+                </signalAssignSequentialStatement>
+                <signalAssignSequentialStatement line="50">
+                  <objectExpression id="out_r" line="50"/>
+                  <signalValue>
+                    <expressions>
+                      <constantExpression id="&quot;0000&quot;" line="50"/>
+                    </expressions>
+                  </signalValue>
+                </signalAssignSequentialStatement>
+                <signalAssignSequentialStatement line="51">
+                  <objectExpression id="o" line="51"/>
+                  <signalValue>
+                    <expressions>
+                      <constantExpression id="&quot;0000&quot;" line="51"/>
+                    </expressions>
+                  </signalValue>
+                </signalAssignSequentialStatement>
+              </sequentialStatements>
+            </then>
+            <elseif>
+              <logicalExpression op="and">
+                <objectExpression id="clock" line="52">
+                  <attribute id="event" line="52"/>
+                </objectExpression>
+                <relationalExpression op="=">
+                  <objectExpression id="clock" line="52"/>
+                  <constantExpression id="'1'" line="52"/>
+                </relationalExpression>
+              </logicalExpression>
+              <then>
+                <sequentialStatements>
+                  <caseSequentialStatement line="53">
+                    <objectExpression id="stato" line="53"/>
+                    <case>
+                      <choices>
+                        <objectExpression id="start_st" line="55"/>
+                      </choices>
+                      <sequentialStatements>
+                        <ifSequentialStatement line="56">
+                          <relationalExpression op="=">
+                            <objectExpression id="start" line="56"/>
+                            <constantExpression id="'1'" line="56"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <variableAssignSequentialStatement line="57">
+                                <objectExpression id="stato" line="57"/>
+                                <objectExpression id="init" line="57"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                        </ifSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="init" line="60"/>
+                      </choices>
+                      <sequentialStatements>
+                        <signalAssignSequentialStatement line="61">
+                          <objectExpression id="in_r" line="61"/>
+                          <signalValue>
+                            <expressions>
+                              <objectExpression id="i" line="61"/>
+                            </expressions>
+                          </signalValue>
+                        </signalAssignSequentialStatement>
+                        <signalAssignSequentialStatement line="62">
+                          <objectExpression id="out_r" line="62"/>
+                          <signalValue>
+                            <expressions>
+                              <constantExpression id="&quot;0000&quot;" line="62"/>
+                            </expressions>
+                          </signalValue>
+                        </signalAssignSequentialStatement>
+                        <signalAssignSequentialStatement line="63">
+                          <objectExpression id="mar" line="63"/>
+                          <signalValue>
+                            <expressions>
+                              <constantExpression id="0" line="63"/>
+                            </expressions>
+                          </signalValue>
+                        </signalAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="64">
+                          <objectExpression id="stato" line="64"/>
+                          <objectExpression id="loop_st" line="64"/>
+                        </variableAssignSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="loop_st" line="66"/>
+                      </choices>
+                      <sequentialStatements>
+                        <variableAssignSequentialStatement line="67">
+                          <objectExpression id="rom_1" line="67"/>
+                          <objectExpression id="rom" line="67">
+                            <parameters>
+                              <objectExpression id="mar" line="67"/>
+                            </parameters>
+                            <range direction="downto">
+                              <constantExpression id="19" line="67"/>
+                              <constantExpression id="12" line="67"/>
+                            </range>
+                          </objectExpression>
+                        </variableAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="68">
+                          <objectExpression id="rom_2" line="68"/>
+                          <objectExpression id="rom" line="68">
+                            <parameters>
+                              <objectExpression id="mar" line="68"/>
+                            </parameters>
+                            <range direction="downto">
+                              <constantExpression id="11" line="68"/>
+                              <constantExpression id="4" line="68"/>
+                            </range>
+                          </objectExpression>
+                        </variableAssignSequentialStatement>
+                        <ifSequentialStatement line="69">
+                          <relationalExpression op="=">
+                            <logicalExpression op="or">
+                              <logicalExpression op="or">
+                                <logicalExpression op="and">
+                                  <objectExpression id="rom_2" line="69"/>
+                                  <prefixExpression op="not">
+                                    <objectExpression id="in_r" line="69"/>
+                                  </prefixExpression>
+                                </logicalExpression>
+                                <logicalExpression op="and">
+                                  <objectExpression id="rom_1" line="69"/>
+                                  <objectExpression id="in_r" line="69"/>
+                                </logicalExpression>
+                              </logicalExpression>
+                              <logicalExpression op="and">
+                                <objectExpression id="rom_2" line="70"/>
+                                <objectExpression id="rom_1" line="70"/>
+                              </logicalExpression>
+                            </logicalExpression>
+                            <constantExpression id="&quot;11111111&quot;" line="70"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <variableAssignSequentialStatement line="71">
+                                <objectExpression id="rom_or" line="71"/>
+                                <objectExpression id="rom" line="71">
+                                  <parameters>
+                                    <objectExpression id="mar" line="71"/>
+                                  </parameters>
+                                  <range direction="downto">
+                                    <constantExpression id="3" line="71"/>
+                                    <constantExpression id="0" line="71"/>
+                                  </range>
+                                </objectExpression>
+                              </variableAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="72">
+                                <objectExpression id="out_r" line="72"/>
+                                <signalValue>
+                                  <expressions>
+                                    <logicalExpression op="or">
+                                      <objectExpression id="out_r" line="72"/>
+                                      <objectExpression id="rom_or" line="72"/>
+                                    </logicalExpression>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                        </ifSequentialStatement>
+                        <variableAssignSequentialStatement line="74">
+                          <objectExpression id="stato" line="74"/>
+                          <objectExpression id="the_end" line="74"/>
+                        </variableAssignSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="the_end" line="76"/>
+                      </choices>
+                      <sequentialStatements>
+                        <ifSequentialStatement line="77">
+                          <relationalExpression op="/=">
+                            <objectExpression id="mar" line="77"/>
+                            <constantExpression id="7" line="77"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="78">
+                                <objectExpression id="mar" line="78"/>
+                                <signalValue>
+                                  <expressions>
+                                    <addingExpression op="+">
+                                      <objectExpression id="mar" line="78"/>
+                                      <constantExpression id="1" line="78"/>
+                                    </addingExpression>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="79">
+                                <objectExpression id="stato" line="79"/>
+                                <objectExpression id="loop_st" line="79"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                          <elseif>
+                            <relationalExpression op="=">
+                              <objectExpression id="start" line="80"/>
+                              <constantExpression id="'0'" line="80"/>
+                            </relationalExpression>
+                            <then>
+                              <sequentialStatements>
+                                <signalAssignSequentialStatement line="81">
+                                  <objectExpression id="o" line="81"/>
+                                  <signalValue>
+                                    <expressions>
+                                      <objectExpression id="out_r" line="81"/>
+                                    </expressions>
+                                  </signalValue>
+                                </signalAssignSequentialStatement>
+                                <variableAssignSequentialStatement line="82">
+                                  <objectExpression id="stato" line="82"/>
+                                  <objectExpression id="start_st" line="82"/>
+                                </variableAssignSequentialStatement>
+                              </sequentialStatements>
+                            </then>
+                          </elseif>
+                        </ifSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                  </caseSequentialStatement>
+                </sequentialStatements>
+              </then>
+            </elseif>
+          </ifSequentialStatement>
+        </sequentialStatements>
+      </processParallelStatement>
+    </parallelStatements>
+  </architecture>
+</vhdl>

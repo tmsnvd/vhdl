@@ -1,0 +1,597 @@
+<?xml version="1.0" ?>
+<vhdl file="../VHDL/b09.vhd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.liberouter.org/formal_verification/tools/vhd2xml/vhdl.xsd">
+  <entity id="b09" line="1">
+    <ports>
+      <port id="reset" io="in" line="2">
+        <type id="bit" line="2"/>
+      </port>
+      <port id="clock" io="in" line="3">
+        <type id="bit" line="3"/>
+      </port>
+      <port id="x" io="in" line="4">
+        <type id="bit" line="4"/>
+      </port>
+      <port id="y" io="out" line="5">
+        <type id="bit" line="5"/>
+      </port>
+    </ports>
+  </entity>
+  <architecture entity="b09" id="behav" line="10">
+    <declarations>
+      <constantDeclaration line="12">
+        <ids>
+          <id id="bit_start" line="12"/>
+        </ids>
+        <type id="bit" line="12"/>
+        <value>
+          <constantExpression id="'1'" line="12"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="13">
+        <ids>
+          <id id="bit_stop" line="13"/>
+        </ids>
+        <type id="bit" line="13"/>
+        <value>
+          <constantExpression id="'0'" line="13"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="14">
+        <ids>
+          <id id="bit_idle" line="14"/>
+        </ids>
+        <type id="bit" line="14"/>
+        <value>
+          <constantExpression id="'0'" line="14"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="15">
+        <ids>
+          <id id="zero_8" line="15"/>
+        </ids>
+        <type id="bit_vector" line="15">
+          <range direction="downto">
+            <constantExpression id="7" line="15"/>
+            <constantExpression id="0" line="15"/>
+          </range>
+        </type>
+        <value>
+          <constantExpression id="&quot;00000000&quot;" line="15"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="16">
+        <ids>
+          <id id="zero_9" line="16"/>
+        </ids>
+        <type id="bit_vector" line="16">
+          <range direction="downto">
+            <constantExpression id="8" line="16"/>
+            <constantExpression id="0" line="16"/>
+          </range>
+        </type>
+        <value>
+          <constantExpression id="&quot;000000000&quot;" line="16"/>
+        </value>
+      </constantDeclaration>
+      <signalDeclaration line="18">
+        <ids>
+          <id id="d_in" line="18"/>
+        </ids>
+        <type id="bit_vector" line="18">
+          <range direction="downto">
+            <constantExpression id="8" line="18"/>
+            <constantExpression id="0" line="18"/>
+          </range>
+        </type>
+      </signalDeclaration>
+      <signalDeclaration line="19">
+        <ids>
+          <id id="d_out" line="19"/>
+        </ids>
+        <type id="bit_vector" line="19">
+          <range direction="downto">
+            <constantExpression id="7" line="19"/>
+            <constantExpression id="0" line="19"/>
+          </range>
+        </type>
+      </signalDeclaration>
+      <signalDeclaration line="20">
+        <ids>
+          <id id="old" line="20"/>
+        </ids>
+        <type id="bit_vector" line="20">
+          <range direction="downto">
+            <constantExpression id="7" line="20"/>
+            <constantExpression id="0" line="20"/>
+          </range>
+        </type>
+      </signalDeclaration>
+    </declarations>
+    <parallelStatements>
+      <processParallelStatement line="24" postponed="false">
+        <parameters>
+          <objectExpression id="clock" line="24"/>
+          <objectExpression id="reset" line="24"/>
+        </parameters>
+        <declarations>
+          <variableDeclaration line="26" shared="false">
+            <ids>
+              <id id="stato" line="26"/>
+            </ids>
+            <type id="integer" line="26">
+              <range direction="downto">
+                <constantExpression id="3" line="26"/>
+                <constantExpression id="0" line="26"/>
+              </range>
+            </type>
+          </variableDeclaration>
+          <constantDeclaration line="27">
+            <ids>
+              <id id="init" line="27"/>
+            </ids>
+            <type id="integer" line="27"/>
+            <value>
+              <constantExpression id="0" line="27"/>
+            </value>
+          </constantDeclaration>
+          <constantDeclaration line="28">
+            <ids>
+              <id id="receive" line="28"/>
+            </ids>
+            <type id="integer" line="28"/>
+            <value>
+              <constantExpression id="1" line="28"/>
+            </value>
+          </constantDeclaration>
+          <constantDeclaration line="29">
+            <ids>
+              <id id="execute" line="29"/>
+            </ids>
+            <type id="integer" line="29"/>
+            <value>
+              <constantExpression id="2" line="29"/>
+            </value>
+          </constantDeclaration>
+          <constantDeclaration line="30">
+            <ids>
+              <id id="load_old" line="30"/>
+            </ids>
+            <type id="integer" line="30"/>
+            <value>
+              <constantExpression id="3" line="30"/>
+            </value>
+          </constantDeclaration>
+        </declarations>
+        <sequentialStatements>
+          <ifSequentialStatement line="34">
+            <relationalExpression op="=">
+              <objectExpression id="reset" line="34"/>
+              <constantExpression id="'1'" line="34"/>
+            </relationalExpression>
+            <then>
+              <sequentialStatements>
+                <variableAssignSequentialStatement line="35">
+                  <objectExpression id="stato" line="35"/>
+                  <objectExpression id="init" line="35"/>
+                </variableAssignSequentialStatement>
+                <signalAssignSequentialStatement line="36">
+                  <objectExpression id="d_in" line="36"/>
+                  <signalValue>
+                    <expressions>
+                      <objectExpression id="zero_9" line="36"/>
+                    </expressions>
+                  </signalValue>
+                </signalAssignSequentialStatement>
+                <signalAssignSequentialStatement line="37">
+                  <objectExpression id="d_out" line="37"/>
+                  <signalValue>
+                    <expressions>
+                      <objectExpression id="zero_8" line="37"/>
+                    </expressions>
+                  </signalValue>
+                </signalAssignSequentialStatement>
+                <signalAssignSequentialStatement line="38">
+                  <objectExpression id="old" line="38"/>
+                  <signalValue>
+                    <expressions>
+                      <objectExpression id="zero_8" line="38"/>
+                    </expressions>
+                  </signalValue>
+                </signalAssignSequentialStatement>
+                <signalAssignSequentialStatement line="39">
+                  <objectExpression id="y" line="39"/>
+                  <signalValue>
+                    <expressions>
+                      <objectExpression id="bit_idle" line="39"/>
+                    </expressions>
+                  </signalValue>
+                </signalAssignSequentialStatement>
+              </sequentialStatements>
+            </then>
+            <elseif>
+              <logicalExpression op="and">
+                <objectExpression id="clock" line="41">
+                  <attribute id="event" line="41"/>
+                </objectExpression>
+                <relationalExpression op="=">
+                  <objectExpression id="clock" line="41"/>
+                  <constantExpression id="'1'" line="41"/>
+                </relationalExpression>
+              </logicalExpression>
+              <then>
+                <sequentialStatements>
+                  <caseSequentialStatement line="42">
+                    <objectExpression id="stato" line="42"/>
+                    <case>
+                      <choices>
+                        <objectExpression id="init" line="44"/>
+                      </choices>
+                      <sequentialStatements>
+                        <variableAssignSequentialStatement line="45">
+                          <objectExpression id="stato" line="45"/>
+                          <objectExpression id="receive" line="45"/>
+                        </variableAssignSequentialStatement>
+                        <signalAssignSequentialStatement line="46">
+                          <objectExpression id="d_in" line="46"/>
+                          <signalValue>
+                            <expressions>
+                              <objectExpression id="zero_9" line="46"/>
+                            </expressions>
+                          </signalValue>
+                        </signalAssignSequentialStatement>
+                        <signalAssignSequentialStatement line="47">
+                          <objectExpression id="d_out" line="47"/>
+                          <signalValue>
+                            <expressions>
+                              <objectExpression id="zero_8" line="47"/>
+                            </expressions>
+                          </signalValue>
+                        </signalAssignSequentialStatement>
+                        <signalAssignSequentialStatement line="48">
+                          <objectExpression id="old" line="48"/>
+                          <signalValue>
+                            <expressions>
+                              <objectExpression id="zero_8" line="48"/>
+                            </expressions>
+                          </signalValue>
+                        </signalAssignSequentialStatement>
+                        <signalAssignSequentialStatement line="49">
+                          <objectExpression id="y" line="49"/>
+                          <signalValue>
+                            <expressions>
+                              <objectExpression id="bit_idle" line="49"/>
+                            </expressions>
+                          </signalValue>
+                        </signalAssignSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="receive" line="52"/>
+                      </choices>
+                      <sequentialStatements>
+                        <ifSequentialStatement line="53">
+                          <relationalExpression op="=">
+                            <objectExpression id="d_in" line="53">
+                              <parameters>
+                                <constantExpression id="0" line="53"/>
+                              </parameters>
+                            </objectExpression>
+                            <objectExpression id="bit_start" line="53"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="54">
+                                <objectExpression id="old" line="54"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="d_in" line="54">
+                                      <range direction="downto">
+                                        <constantExpression id="8" line="54"/>
+                                        <constantExpression id="1" line="54"/>
+                                      </range>
+                                    </objectExpression>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="55">
+                                <objectExpression id="y" line="55"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="bit_start" line="55"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="56">
+                                <objectExpression id="d_out" line="56"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="d_in" line="56">
+                                      <range direction="downto">
+                                        <constantExpression id="8" line="56"/>
+                                        <constantExpression id="1" line="56"/>
+                                      </range>
+                                    </objectExpression>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="57">
+                                <objectExpression id="d_in" line="57"/>
+                                <signalValue>
+                                  <expressions>
+                                    <addingExpression op="&amp;">
+                                      <objectExpression id="bit_start" line="57"/>
+                                      <objectExpression id="zero_8" line="57"/>
+                                    </addingExpression>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="58">
+                                <objectExpression id="stato" line="58"/>
+                                <objectExpression id="execute" line="58"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                          <else>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="60">
+                                <objectExpression id="d_in" line="60"/>
+                                <signalValue>
+                                  <expressions>
+                                    <addingExpression op="&amp;">
+                                      <objectExpression id="x" line="60"/>
+                                      <objectExpression id="d_in" line="60">
+                                        <range direction="downto">
+                                          <constantExpression id="8" line="60"/>
+                                          <constantExpression id="1" line="60"/>
+                                        </range>
+                                      </objectExpression>
+                                    </addingExpression>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="61">
+                                <objectExpression id="stato" line="61"/>
+                                <objectExpression id="receive" line="61"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </else>
+                        </ifSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="execute" line="65"/>
+                      </choices>
+                      <sequentialStatements>
+                        <ifSequentialStatement line="66">
+                          <relationalExpression op="=">
+                            <objectExpression id="d_in" line="66">
+                              <parameters>
+                                <constantExpression id="0" line="66"/>
+                              </parameters>
+                            </objectExpression>
+                            <objectExpression id="bit_start" line="66"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="67">
+                                <objectExpression id="y" line="67"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="bit_stop" line="67"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="68">
+                                <objectExpression id="stato" line="68"/>
+                                <objectExpression id="load_old" line="68"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                          <else>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="70">
+                                <objectExpression id="d_out" line="70"/>
+                                <signalValue>
+                                  <expressions>
+                                    <addingExpression op="&amp;">
+                                      <objectExpression id="bit_idle" line="70"/>
+                                      <objectExpression id="d_out" line="70">
+                                        <range direction="downto">
+                                          <constantExpression id="7" line="70"/>
+                                          <constantExpression id="1" line="70"/>
+                                        </range>
+                                      </objectExpression>
+                                    </addingExpression>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="71">
+                                <objectExpression id="y" line="71"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="d_out" line="71">
+                                      <parameters>
+                                        <constantExpression id="0" line="71"/>
+                                      </parameters>
+                                    </objectExpression>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="72">
+                                <objectExpression id="stato" line="72"/>
+                                <objectExpression id="execute" line="72"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </else>
+                        </ifSequentialStatement>
+                        <signalAssignSequentialStatement line="74">
+                          <objectExpression id="d_in" line="74"/>
+                          <signalValue>
+                            <expressions>
+                              <addingExpression op="&amp;">
+                                <objectExpression id="x" line="74"/>
+                                <objectExpression id="d_in" line="74">
+                                  <range direction="downto">
+                                    <constantExpression id="8" line="74"/>
+                                    <constantExpression id="1" line="74"/>
+                                  </range>
+                                </objectExpression>
+                              </addingExpression>
+                            </expressions>
+                          </signalValue>
+                        </signalAssignSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="load_old" line="77"/>
+                      </choices>
+                      <sequentialStatements>
+                        <ifSequentialStatement line="78">
+                          <relationalExpression op="=">
+                            <objectExpression id="d_in" line="78">
+                              <parameters>
+                                <constantExpression id="0" line="78"/>
+                              </parameters>
+                            </objectExpression>
+                            <objectExpression id="bit_start" line="78"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <ifSequentialStatement line="80">
+                                <relationalExpression op="=">
+                                  <objectExpression id="d_in" line="80">
+                                    <range direction="downto">
+                                      <constantExpression id="8" line="80"/>
+                                      <constantExpression id="1" line="80"/>
+                                    </range>
+                                  </objectExpression>
+                                  <objectExpression id="old" line="80"/>
+                                </relationalExpression>
+                                <then>
+                                  <sequentialStatements>
+                                    <signalAssignSequentialStatement line="81">
+                                      <objectExpression id="d_in" line="81"/>
+                                      <signalValue>
+                                        <expressions>
+                                          <objectExpression id="zero_9" line="81"/>
+                                        </expressions>
+                                      </signalValue>
+                                    </signalAssignSequentialStatement>
+                                    <signalAssignSequentialStatement line="82">
+                                      <objectExpression id="y" line="82"/>
+                                      <signalValue>
+                                        <expressions>
+                                          <objectExpression id="bit_idle" line="82"/>
+                                        </expressions>
+                                      </signalValue>
+                                    </signalAssignSequentialStatement>
+                                    <variableAssignSequentialStatement line="83">
+                                      <objectExpression id="stato" line="83"/>
+                                      <objectExpression id="load_old" line="83"/>
+                                    </variableAssignSequentialStatement>
+                                  </sequentialStatements>
+                                </then>
+                                <else>
+                                  <sequentialStatements>
+                                    <signalAssignSequentialStatement line="85">
+                                      <objectExpression id="y" line="85"/>
+                                      <signalValue>
+                                        <expressions>
+                                          <objectExpression id="bit_start" line="85"/>
+                                        </expressions>
+                                      </signalValue>
+                                    </signalAssignSequentialStatement>
+                                    <signalAssignSequentialStatement line="86">
+                                      <objectExpression id="d_out" line="86"/>
+                                      <signalValue>
+                                        <expressions>
+                                          <objectExpression id="d_in" line="86">
+                                            <range direction="downto">
+                                              <constantExpression id="8" line="86"/>
+                                              <constantExpression id="1" line="86"/>
+                                            </range>
+                                          </objectExpression>
+                                        </expressions>
+                                      </signalValue>
+                                    </signalAssignSequentialStatement>
+                                    <signalAssignSequentialStatement line="87">
+                                      <objectExpression id="d_in" line="87"/>
+                                      <signalValue>
+                                        <expressions>
+                                          <addingExpression op="&amp;">
+                                            <objectExpression id="bit_start" line="87"/>
+                                            <objectExpression id="zero_8" line="87"/>
+                                          </addingExpression>
+                                        </expressions>
+                                      </signalValue>
+                                    </signalAssignSequentialStatement>
+                                    <variableAssignSequentialStatement line="88">
+                                      <objectExpression id="stato" line="88"/>
+                                      <objectExpression id="execute" line="88"/>
+                                    </variableAssignSequentialStatement>
+                                  </sequentialStatements>
+                                </else>
+                              </ifSequentialStatement>
+                              <signalAssignSequentialStatement line="90">
+                                <objectExpression id="old" line="90"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="d_in" line="90">
+                                      <range direction="downto">
+                                        <constantExpression id="8" line="90"/>
+                                        <constantExpression id="1" line="90"/>
+                                      </range>
+                                    </objectExpression>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                          <else>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="92">
+                                <objectExpression id="d_in" line="92"/>
+                                <signalValue>
+                                  <expressions>
+                                    <addingExpression op="&amp;">
+                                      <objectExpression id="x" line="92"/>
+                                      <objectExpression id="d_in" line="92">
+                                        <range direction="downto">
+                                          <constantExpression id="8" line="92"/>
+                                          <constantExpression id="1" line="92"/>
+                                        </range>
+                                      </objectExpression>
+                                    </addingExpression>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="93">
+                                <objectExpression id="y" line="93"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="bit_idle" line="93"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="94">
+                                <objectExpression id="stato" line="94"/>
+                                <objectExpression id="load_old" line="94"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </else>
+                        </ifSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                  </caseSequentialStatement>
+                </sequentialStatements>
+              </then>
+            </elseif>
+          </ifSequentialStatement>
+        </sequentialStatements>
+      </processParallelStatement>
+    </parallelStatements>
+  </architecture>
+</vhdl>

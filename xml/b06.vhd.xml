@@ -1,0 +1,720 @@
+<?xml version="1.0" ?>
+<vhdl file="../VHDL/b06.vhd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.liberouter.org/formal_verification/tools/vhd2xml/vhdl.xsd">
+  <entity id="b06" line="1">
+    <ports>
+      <port id="cc_mux" io="out" line="2">
+        <type id="bit_vector" line="2">
+          <range direction="downto">
+            <constantExpression id="2" line="2"/>
+            <constantExpression id="1" line="2"/>
+          </range>
+        </type>
+      </port>
+      <port id="eql" io="in" line="3">
+        <type id="bit" line="3"/>
+      </port>
+      <port id="uscite" io="out" line="4">
+        <type id="bit_vector" line="4">
+          <range direction="downto">
+            <constantExpression id="2" line="4"/>
+            <constantExpression id="1" line="4"/>
+          </range>
+        </type>
+      </port>
+      <port id="clock" io="in" line="5">
+        <type id="bit" line="5"/>
+      </port>
+      <port id="enable_count" io="out" line="6">
+        <type id="bit" line="6"/>
+      </port>
+      <port id="ackout" io="out" line="7">
+        <type id="bit" line="7"/>
+      </port>
+      <port id="reset" io="in" line="8">
+        <type id="bit" line="8"/>
+      </port>
+      <port id="cont_eql" io="in" line="9">
+        <type id="bit" line="9"/>
+      </port>
+    </ports>
+  </entity>
+  <architecture entity="b06" id="behav" line="13">
+    <declarations>
+      <constantDeclaration line="15">
+        <ids>
+          <id id="s_init" line="15"/>
+        </ids>
+        <type id="integer" line="15"/>
+        <value>
+          <constantExpression id="0" line="15"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="16">
+        <ids>
+          <id id="s_wait" line="16"/>
+        </ids>
+        <type id="integer" line="16"/>
+        <value>
+          <constantExpression id="1" line="16"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="17">
+        <ids>
+          <id id="s_enin" line="17"/>
+        </ids>
+        <type id="integer" line="17"/>
+        <value>
+          <constantExpression id="2" line="17"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="18">
+        <ids>
+          <id id="s_enin_w" line="18"/>
+        </ids>
+        <type id="integer" line="18"/>
+        <value>
+          <constantExpression id="3" line="18"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="19">
+        <ids>
+          <id id="s_intr" line="19"/>
+        </ids>
+        <type id="integer" line="19"/>
+        <value>
+          <constantExpression id="4" line="19"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="20">
+        <ids>
+          <id id="s_intr_1" line="20"/>
+        </ids>
+        <type id="integer" line="20"/>
+        <value>
+          <constantExpression id="5" line="20"/>
+        </value>
+      </constantDeclaration>
+      <constantDeclaration line="21">
+        <ids>
+          <id id="s_intr_w" line="21"/>
+        </ids>
+        <type id="integer" line="21"/>
+        <value>
+          <constantExpression id="6" line="21"/>
+        </value>
+      </constantDeclaration>
+    </declarations>
+    <parallelStatements>
+      <processParallelStatement line="24" postponed="false">
+        <parameters>
+          <objectExpression id="reset" line="24"/>
+          <objectExpression id="clock" line="24"/>
+        </parameters>
+        <declarations>
+          <variableDeclaration line="25" shared="false">
+            <ids>
+              <id id="state" line="25"/>
+            </ids>
+            <type id="integer" line="25">
+              <range direction="downto">
+                <constantExpression id="6" line="25"/>
+                <constantExpression id="0" line="25"/>
+              </range>
+            </type>
+          </variableDeclaration>
+          <constantDeclaration line="27">
+            <ids>
+              <id id="cc_nop" line="27"/>
+            </ids>
+            <type id="bit_vector" line="27">
+              <range direction="downto">
+                <constantExpression id="2" line="27"/>
+                <constantExpression id="1" line="27"/>
+              </range>
+            </type>
+            <value>
+              <constantExpression id="&quot;01&quot;" line="27"/>
+            </value>
+          </constantDeclaration>
+          <constantDeclaration line="28">
+            <ids>
+              <id id="cc_enin" line="28"/>
+            </ids>
+            <type id="bit_vector" line="28">
+              <range direction="downto">
+                <constantExpression id="2" line="28"/>
+                <constantExpression id="1" line="28"/>
+              </range>
+            </type>
+            <value>
+              <constantExpression id="&quot;01&quot;" line="28"/>
+            </value>
+          </constantDeclaration>
+          <constantDeclaration line="29">
+            <ids>
+              <id id="cc_intr" line="29"/>
+            </ids>
+            <type id="bit_vector" line="29">
+              <range direction="downto">
+                <constantExpression id="2" line="29"/>
+                <constantExpression id="1" line="29"/>
+              </range>
+            </type>
+            <value>
+              <constantExpression id="&quot;10&quot;" line="29"/>
+            </value>
+          </constantDeclaration>
+          <constantDeclaration line="30">
+            <ids>
+              <id id="cc_ackin" line="30"/>
+            </ids>
+            <type id="bit_vector" line="30">
+              <range direction="downto">
+                <constantExpression id="2" line="30"/>
+                <constantExpression id="1" line="30"/>
+              </range>
+            </type>
+            <value>
+              <constantExpression id="&quot;11&quot;" line="30"/>
+            </value>
+          </constantDeclaration>
+          <constantDeclaration line="31">
+            <ids>
+              <id id="out_norm" line="31"/>
+            </ids>
+            <type id="bit_vector" line="31">
+              <range direction="downto">
+                <constantExpression id="2" line="31"/>
+                <constantExpression id="1" line="31"/>
+              </range>
+            </type>
+            <value>
+              <constantExpression id="&quot;01&quot;" line="31"/>
+            </value>
+          </constantDeclaration>
+        </declarations>
+        <sequentialStatements>
+          <ifSequentialStatement line="34">
+            <relationalExpression op="=">
+              <objectExpression id="reset" line="34"/>
+              <constantExpression id="'1'" line="34"/>
+            </relationalExpression>
+            <then>
+              <sequentialStatements>
+                <variableAssignSequentialStatement line="35">
+                  <objectExpression id="state" line="35"/>
+                  <objectExpression id="s_init" line="35"/>
+                </variableAssignSequentialStatement>
+                <signalAssignSequentialStatement line="36">
+                  <objectExpression id="cc_mux" line="36"/>
+                  <signalValue>
+                    <expressions>
+                      <constantExpression id="&quot;00&quot;" line="36"/>
+                    </expressions>
+                  </signalValue>
+                </signalAssignSequentialStatement>
+                <signalAssignSequentialStatement line="37">
+                  <objectExpression id="enable_count" line="37"/>
+                  <signalValue>
+                    <expressions>
+                      <constantExpression id="'0'" line="37"/>
+                    </expressions>
+                  </signalValue>
+                </signalAssignSequentialStatement>
+                <signalAssignSequentialStatement line="38">
+                  <objectExpression id="ackout" line="38"/>
+                  <signalValue>
+                    <expressions>
+                      <constantExpression id="'0'" line="38"/>
+                    </expressions>
+                  </signalValue>
+                </signalAssignSequentialStatement>
+                <signalAssignSequentialStatement line="39">
+                  <objectExpression id="uscite" line="39"/>
+                  <signalValue>
+                    <expressions>
+                      <constantExpression id="&quot;00&quot;" line="39"/>
+                    </expressions>
+                  </signalValue>
+                </signalAssignSequentialStatement>
+              </sequentialStatements>
+            </then>
+            <elseif>
+              <logicalExpression op="and">
+                <objectExpression id="clock" line="40">
+                  <attribute id="event" line="40"/>
+                </objectExpression>
+                <relationalExpression op="=">
+                  <objectExpression id="clock" line="40"/>
+                  <constantExpression id="'1'" line="40"/>
+                </relationalExpression>
+              </logicalExpression>
+              <then>
+                <sequentialStatements>
+                  <ifSequentialStatement line="41">
+                    <relationalExpression op="=">
+                      <objectExpression id="cont_eql" line="41"/>
+                      <constantExpression id="'1'" line="41"/>
+                    </relationalExpression>
+                    <then>
+                      <sequentialStatements>
+                        <signalAssignSequentialStatement line="42">
+                          <objectExpression id="ackout" line="42"/>
+                          <signalValue>
+                            <expressions>
+                              <constantExpression id="'0'" line="42"/>
+                            </expressions>
+                          </signalValue>
+                        </signalAssignSequentialStatement>
+                        <signalAssignSequentialStatement line="43">
+                          <objectExpression id="enable_count" line="43"/>
+                          <signalValue>
+                            <expressions>
+                              <constantExpression id="'0'" line="43"/>
+                            </expressions>
+                          </signalValue>
+                        </signalAssignSequentialStatement>
+                      </sequentialStatements>
+                    </then>
+                    <else>
+                      <sequentialStatements>
+                        <signalAssignSequentialStatement line="45">
+                          <objectExpression id="ackout" line="45"/>
+                          <signalValue>
+                            <expressions>
+                              <constantExpression id="'1'" line="45"/>
+                            </expressions>
+                          </signalValue>
+                        </signalAssignSequentialStatement>
+                        <signalAssignSequentialStatement line="46">
+                          <objectExpression id="enable_count" line="46"/>
+                          <signalValue>
+                            <expressions>
+                              <constantExpression id="'1'" line="46"/>
+                            </expressions>
+                          </signalValue>
+                        </signalAssignSequentialStatement>
+                      </sequentialStatements>
+                    </else>
+                  </ifSequentialStatement>
+                  <caseSequentialStatement line="49">
+                    <objectExpression id="state" line="49"/>
+                    <case>
+                      <choices>
+                        <objectExpression id="s_init" line="51"/>
+                      </choices>
+                      <sequentialStatements>
+                        <signalAssignSequentialStatement line="52">
+                          <objectExpression id="cc_mux" line="52"/>
+                          <signalValue>
+                            <expressions>
+                              <objectExpression id="cc_enin" line="52"/>
+                            </expressions>
+                          </signalValue>
+                        </signalAssignSequentialStatement>
+                        <signalAssignSequentialStatement line="53">
+                          <objectExpression id="uscite" line="53"/>
+                          <signalValue>
+                            <expressions>
+                              <objectExpression id="out_norm" line="53"/>
+                            </expressions>
+                          </signalValue>
+                        </signalAssignSequentialStatement>
+                        <variableAssignSequentialStatement line="54">
+                          <objectExpression id="state" line="54"/>
+                          <objectExpression id="s_wait" line="54"/>
+                        </variableAssignSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="s_wait" line="56"/>
+                      </choices>
+                      <sequentialStatements>
+                        <ifSequentialStatement line="57">
+                          <relationalExpression op="=">
+                            <objectExpression id="eql" line="57"/>
+                            <constantExpression id="'1'" line="57"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="58">
+                                <objectExpression id="uscite" line="58"/>
+                                <signalValue>
+                                  <expressions>
+                                    <constantExpression id="&quot;00&quot;" line="58"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="59">
+                                <objectExpression id="cc_mux" line="59"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="cc_ackin" line="59"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="60">
+                                <objectExpression id="state" line="60"/>
+                                <objectExpression id="s_enin" line="60"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                          <else>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="62">
+                                <objectExpression id="uscite" line="62"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="out_norm" line="62"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="63">
+                                <objectExpression id="cc_mux" line="63"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="cc_intr" line="63"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="64">
+                                <objectExpression id="state" line="64"/>
+                                <objectExpression id="s_intr_1" line="64"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </else>
+                        </ifSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="s_intr_1" line="67"/>
+                      </choices>
+                      <sequentialStatements>
+                        <ifSequentialStatement line="68">
+                          <relationalExpression op="=">
+                            <objectExpression id="eql" line="68"/>
+                            <constantExpression id="'1'" line="68"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="69">
+                                <objectExpression id="uscite" line="69"/>
+                                <signalValue>
+                                  <expressions>
+                                    <constantExpression id="&quot;00&quot;" line="69"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="70">
+                                <objectExpression id="cc_mux" line="70"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="cc_ackin" line="70"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="71">
+                                <objectExpression id="state" line="71"/>
+                                <objectExpression id="s_intr" line="71"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                          <else>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="73">
+                                <objectExpression id="uscite" line="73"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="out_norm" line="73"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="74">
+                                <objectExpression id="cc_mux" line="74"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="cc_enin" line="74"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="75">
+                                <objectExpression id="state" line="75"/>
+                                <objectExpression id="s_wait" line="75"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </else>
+                        </ifSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="s_enin" line="78"/>
+                      </choices>
+                      <sequentialStatements>
+                        <ifSequentialStatement line="79">
+                          <relationalExpression op="=">
+                            <objectExpression id="eql" line="79"/>
+                            <constantExpression id="'1'" line="79"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="80">
+                                <objectExpression id="uscite" line="80"/>
+                                <signalValue>
+                                  <expressions>
+                                    <constantExpression id="&quot;00&quot;" line="80"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="81">
+                                <objectExpression id="cc_mux" line="81"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="cc_ackin" line="81"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="82">
+                                <objectExpression id="state" line="82"/>
+                                <objectExpression id="s_enin" line="82"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                          <else>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="84">
+                                <objectExpression id="uscite" line="84"/>
+                                <signalValue>
+                                  <expressions>
+                                    <constantExpression id="&quot;01&quot;" line="84"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="85">
+                                <objectExpression id="ackout" line="85"/>
+                                <signalValue>
+                                  <expressions>
+                                    <constantExpression id="'1'" line="85"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="86">
+                                <objectExpression id="enable_count" line="86"/>
+                                <signalValue>
+                                  <expressions>
+                                    <constantExpression id="'1'" line="86"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="87">
+                                <objectExpression id="cc_mux" line="87"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="cc_enin" line="87"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="88">
+                                <objectExpression id="state" line="88"/>
+                                <objectExpression id="s_enin_w" line="88"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </else>
+                        </ifSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="s_enin_w" line="91"/>
+                      </choices>
+                      <sequentialStatements>
+                        <ifSequentialStatement line="92">
+                          <relationalExpression op="=">
+                            <objectExpression id="eql" line="92"/>
+                            <constantExpression id="'1'" line="92"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="93">
+                                <objectExpression id="uscite" line="93"/>
+                                <signalValue>
+                                  <expressions>
+                                    <constantExpression id="&quot;01&quot;" line="93"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="94">
+                                <objectExpression id="cc_mux" line="94"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="cc_enin" line="94"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="95">
+                                <objectExpression id="state" line="95"/>
+                                <objectExpression id="s_enin_w" line="95"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                          <else>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="97">
+                                <objectExpression id="uscite" line="97"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="out_norm" line="97"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="98">
+                                <objectExpression id="cc_mux" line="98"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="cc_enin" line="98"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="99">
+                                <objectExpression id="state" line="99"/>
+                                <objectExpression id="s_wait" line="99"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </else>
+                        </ifSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="s_intr" line="102"/>
+                      </choices>
+                      <sequentialStatements>
+                        <ifSequentialStatement line="103">
+                          <relationalExpression op="=">
+                            <objectExpression id="eql" line="103"/>
+                            <constantExpression id="'1'" line="103"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="104">
+                                <objectExpression id="uscite" line="104"/>
+                                <signalValue>
+                                  <expressions>
+                                    <constantExpression id="&quot;00&quot;" line="104"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="105">
+                                <objectExpression id="cc_mux" line="105"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="cc_ackin" line="105"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="106">
+                                <objectExpression id="state" line="106"/>
+                                <objectExpression id="s_intr" line="106"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                          <else>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="108">
+                                <objectExpression id="uscite" line="108"/>
+                                <signalValue>
+                                  <expressions>
+                                    <constantExpression id="&quot;11&quot;" line="108"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="109">
+                                <objectExpression id="cc_mux" line="109"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="cc_intr" line="109"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="110">
+                                <objectExpression id="state" line="110"/>
+                                <objectExpression id="s_intr_w" line="110"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </else>
+                        </ifSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                    <case>
+                      <choices>
+                        <objectExpression id="s_intr_w" line="113"/>
+                      </choices>
+                      <sequentialStatements>
+                        <ifSequentialStatement line="114">
+                          <relationalExpression op="=">
+                            <objectExpression id="eql" line="114"/>
+                            <constantExpression id="'1'" line="114"/>
+                          </relationalExpression>
+                          <then>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="115">
+                                <objectExpression id="uscite" line="115"/>
+                                <signalValue>
+                                  <expressions>
+                                    <constantExpression id="&quot;11&quot;" line="115"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="116">
+                                <objectExpression id="cc_mux" line="116"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="cc_intr" line="116"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="117">
+                                <objectExpression id="state" line="117"/>
+                                <objectExpression id="s_intr_w" line="117"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </then>
+                          <else>
+                            <sequentialStatements>
+                              <signalAssignSequentialStatement line="119">
+                                <objectExpression id="uscite" line="119"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="out_norm" line="119"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <signalAssignSequentialStatement line="120">
+                                <objectExpression id="cc_mux" line="120"/>
+                                <signalValue>
+                                  <expressions>
+                                    <objectExpression id="cc_enin" line="120"/>
+                                  </expressions>
+                                </signalValue>
+                              </signalAssignSequentialStatement>
+                              <variableAssignSequentialStatement line="121">
+                                <objectExpression id="state" line="121"/>
+                                <objectExpression id="s_wait" line="121"/>
+                              </variableAssignSequentialStatement>
+                            </sequentialStatements>
+                          </else>
+                        </ifSequentialStatement>
+                      </sequentialStatements>
+                    </case>
+                  </caseSequentialStatement>
+                </sequentialStatements>
+              </then>
+            </elseif>
+          </ifSequentialStatement>
+        </sequentialStatements>
+      </processParallelStatement>
+    </parallelStatements>
+  </architecture>
+</vhdl>
